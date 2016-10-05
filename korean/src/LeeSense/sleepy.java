@@ -7,9 +7,8 @@ public class sleepy {
 		return nado;
 	}
 	private static int scit = 31;
-	public void setNado(String nado) {
-		this.nado = nado;
-	}
+	
+	private static int scit2 = 32;
 	
 	
 	
