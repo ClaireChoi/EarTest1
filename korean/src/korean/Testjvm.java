@@ -23,7 +23,7 @@ public class Testjvm {
 		public static void main( String [] arg )throws Exception {
 			
 			List<Map<String, Integer>> list = new ArrayList<Map<String, Integer>>();
-			String tempStr = "안녕하세요";
+			String tempStr = "안녕하세요 반갑습니다";
 			String lastStr = "";
 			System.out.println(tempStr);
 			for(int i = 0 ; i < tempStr.length();i++)
