@@ -41,7 +41,6 @@
     });
 
     createChannelButton.addEventListener('click', function(event) {
-    	alert('addEventListener');
       event.preventDefault();
       appCaller.createChannel();
     }, false);
@@ -49,7 +48,7 @@
     disconnectCahnnelButton.addEventListener('click', function(event) {
     	alert(1);
     	if(window.confirm('통화를 종료하시겠습니까?')){
-    		appCallee.disconnectChannel(channelId);
+    		appCaller.disconnectChannel(channelId);
     	} else {
     		
     	}
