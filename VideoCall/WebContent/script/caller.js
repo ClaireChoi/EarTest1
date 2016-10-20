@@ -5,6 +5,8 @@
     
     var createChannelButton = document.querySelector('#createChannel');
     var createChannelIdInput = document.querySelector('#createChannelId');
+    var createChannelIdValue = document.querySelector('#createChannelId1');
+    var disconnectCahnnelButton = document.querySelector('#disconnectChannel');
     var appCaller;
 
     appCaller = new PlayRTC({
@@ -17,6 +19,7 @@
     appCaller.on('connectChannel', function(channelId) {
     	
       createChannelIdInput.value = channelId;
+      createChannelIdValue.value = channelId;
       alert('connectChannel' + channelId);
     });
 
@@ -41,4 +44,13 @@
     	alert('addEventListener');
       event.preventDefault();
       appCaller.createChannel();
+    }, false);
+    
+    disconnectCahnnelButton.addEventListener('click', function(event) {
+    	alert(1);
+    	if(window.confirm('통화를 종료하시겠습니까?')){
+    		appCallee.disconnectChannel(channelId);
+    	} else {
+    		
+    	}
     }, false);

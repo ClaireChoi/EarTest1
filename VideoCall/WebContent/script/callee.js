@@ -4,7 +4,10 @@
  'use strict';
  
     var connectChannelIdInput = document.querySelector('#connectChannelId');
+    //var createChannelIdValue = document.querySelector('#createChannelId1');
+    var connectChannelIdValue = document.querySelector('#connectChannelId1');
     var connectChannelButton = document.querySelector('#connectChannel');
+    var disconnectCahnnelButton = document.querySelector('#disconnectChannel');
     var appCallee;
 
     appCallee = new PlayRTC({
@@ -24,6 +27,7 @@
 
     connectChannelButton.addEventListener('click', function(event) {
       var channelId = connectChannelIdInput.value;
+      connectChannelIdValue.value = channelId;
       alert('callee:'+channelId);
 
       event.preventDefault();
@@ -32,3 +36,13 @@
       }
       appCallee.connectChannel(channelId);
     }, false);
+    
+    disconnectCahnnelButton.addEventListener('click', function(event) {
+    	if(window.confirm('통화를 종료하시겠습니까?')){
+    		appCallee.disconnectChannel(channelId);
+    	} else {
+    		
+    	}
+    }, false);
+    
+    
