@@ -44,13 +44,18 @@ section {
 #callerRemoteVideo{
   /* margin-top: 20px;
   margin-bottom: 20px; */
-  width: 100%;
+/*   width: 100%;
   height: 100%;
   margin : 0;
   position: absolute;
-   /*top : 150px;
-  left : 250px; */
-  border : 3px solid blue;
+   top : 150px;
+  left : 250px;
+  border : 3px solid blue; */
+   width: 800px;
+  height: 600px;
+  position: absolute;
+  top : 150px;
+  left : 250px;
 }
 #calleeLocalVideo{
   width: 130px;
@@ -69,7 +74,7 @@ section {
   position: absolute;
   top : 150px;
   left : 250px;
-  border : 3px solid balck;
+  border : 3px solid black;
 }
 /* video.local-video pull-right {
   width: 80px;
