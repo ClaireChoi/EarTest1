@@ -1,1 +1,43 @@
 /* your styles go here */
+body{
+	padding : 0;
+	margin : 0;
+}
+#img_left{
+	width : 50%;
+	height : 120%;
+	float: left;
+}
+.left{
+	font-family: 맑은 고딕;
+	font-size: 60px;
+	font-weight: bold;
+	color: white;
+	float: left;
+	position: absolute;
+	top: 40%;
+	left: 15%;
+}
+.button_left{
+	width : 100px;
+	height : auto;
+	float : left;
+	position : absolute;
+	top: 50%;
+	left : 20%;
+}
+#img_right{
+	width : 50%;
+	height : 120%;
+	float: right;	
+}
+.right{
+	font-family: 맑은 고딕;
+	font-size: 60px;
+	font-weight: bold;
+	color: white;
+	float: right;
+	position: absolute;
+	top: 40%;
+	left: 70%;
+}

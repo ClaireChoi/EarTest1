@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.png">
+	<link rel="stylesheet" href="css/custom.css" >
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -33,16 +34,31 @@
         
         <!-- page 2 / 방 개설/연결 선택창-->
         <section id="page11" class="section=gray">
-        NewFile!
-        
-        
+        <img src="img/sign.gif" id="img_left" />
+        <h1 class="left">립모션사용자</h1>
+        <a href="#page12"><img src="img/Go-Now-Button.png" class="button_left"></a>
+        <img src="img/sign1.gif" id="img_right"/>
+        <h1 class="right">일반사용자</h1>
+        <img src="img/Go-Now-Button.png" class="button_right">
+        <div class="icon faa-float animated"><i class="fa fa-angle-double-down"></i></div>
         </section>
         
+        
+         <!-- page 3 / 방 개설/연결 선택창-->
+        <section id="page12" class="section=gray">
+        <div id="target"></div>
+        <img src="img/sign.gif" id="img_left" />
+        <h1 class="left">립모션사용자</h1>
+        <a href="index.html"><img src="img/Go-Now-Button.png" class="button_left"></a>
+        <h1 class="right">일반사용자</h1>
+        <img src="img/Go-Now-Button.png" class="button_right">
+        </section>
     
     <!-- Javascript files-->
     <script src="script/playrtc.min.js"></script>
     <script src="script/jquery-1.11.0.min.js"></script>
     <script src="script/jquery.onepage-scroll.js"></script>
+    <script src="script/test.js"></script>
 	<script src="script/callertest.js"></script>
     <script src="script/callee.js"></script>
     <script>window.jQuery || document.write('<script src="script/jquery-1.11.0.min.js"><\/script>')</script>

@@ -50,6 +50,7 @@ body, .onepage-wrapper, html {
 }
 .onepage-pagination li a:before{
   content: '';
+ 
   position: absolute;
   width: 6px;
   height: 6px;
@@ -70,6 +71,7 @@ body, .onepage-wrapper, html {
 
 .disabled-onepage-scroll, .disabled-onepage-scroll .wrapper {
   overflow: auto;
+  
 }
 
 .disabled-onepage-scroll .onepage-wrapper .section {
