@@ -27,6 +27,7 @@
 	<!-- SQL문 정의한 파일 포함 -->
 	<mappers>
 		<mapper resource="mapper/testMapper.xml" />
+		<mapper resource="mapper/testMapper3.xml" />
 	</mappers>
 	
 </configuration>

@@ -12,19 +12,21 @@ import vo.FingerData;
 public class EarDAO3 {
 
 
-	SqlSession sqlSesstion = MybatisConfig.getSqlSessionFactory().openSession();
 
 	public FingerData find(FingerData data){
+		SqlSession sqlSesstion = MybatisConfig.getSqlSessionFactory().openSession();
 
-		System.out.println(data);
+		//System.out.println(data);
 		
 		double gap = 100;
 		FingerData finger = null;
 
-		List<FingerData> resultList = sqlSesstion.selectList("test2.find1", data);
-		for (FingerData x : resultList) {
+		List<FingerData> resultList = sqlSesstion.selectList("test3.find1", data);
+		/*for (FingerData x : resultList) {
 			System.out.println("1차(검지):" + x);
-		}
+		}*/
+		//System.out.println("///////////////////////////////////");
+		
 		
 		if (resultList.size()>1) {
 			for (FingerData x : resultList) {
@@ -33,6 +35,7 @@ public class EarDAO3 {
 				double little = Math.abs(x.getLittle_x()-data.getLittle_x())+Math.abs(x.getLittle_y()-data.getLittle_y())+Math.abs(x.getLittle_z()-data.getLittle_z());
 				double thumb = Math.abs(x.getThumb_x()-data.getThumb_x())+Math.abs(x.getThumb_y()-data.getThumb_y())+Math.abs(x.getThumb_z()-data.getThumb_z());
 				double tmp = middle + ring + little + thumb;
+				//System.out.println(tmp);
 				if (tmp < gap) {
 					gap = tmp;
 					finger = x;
@@ -40,10 +43,12 @@ public class EarDAO3 {
 			}
 		}//if size first
 
+		sqlSesstion.close();
+
 		if (resultList.size()==1) {
 			return resultList.get(0);
 		}
-
+		
 		return finger;
 	}//find
 
