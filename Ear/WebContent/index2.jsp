@@ -27,6 +27,7 @@ tr.hit{
 }
 
 </style>
+<script src="tts.js/voicerss-tts.min.js"></script>
 <script src="http://js.leapmotion.com/leap-0.6.3.min.js"></script>
 <script src="script/jquery-3.1.0.min.js"  type="text/javascript"></script>
 <script>
@@ -44,6 +45,9 @@ var controllerOptions = {enableGestures: true};
 var frameCopy;
 var fingerTypeMap = ["Thumb", "Index finger", "Middle finger", "Ring finger", "Pinky finger"];
 
+//store alphabet (division, indicator)
+var array = []; 
+var han = '';
 
 Leap.loop(controllerOptions, function(frame) {
   if (paused) {
@@ -199,28 +203,83 @@ $(function() {
 		, dataType:'json'
 		, success: function(resp) {
 			var alphabet = resp.alphabet;
+// 			var division = resp.alphabet.division;
+// 			var indicator = resp.alphabet.indicator;
 			/* 		
-				배열등에 넣기.
+				배열에 넣기.
 				alphabet.division // 구분자
 				alphabet.indicator // index
-			
 			 */
+			array.push(alphabet);
+				});
+			
 			$("div#test2").html(function(index, html) {
 				return html += alphabet.letter;
 			});
 			
 			insertedRow.attr('class', "hit");
 		}
+	}
 		, error: function() {
 			alert("ㄴㄴ;;");
 		}
 		
 	});//ajax
 	
-	
 	}, 250);
+	
+	
 });
 
+function assemble(){
+
+	 //종성 넣기 - 마침표 액션 들어오면 실행
+		var alphabet = {"division":"0","indicator":"0"};
+		for (var i= 1; i*3 < array.length; i++) {
+			var ii = i*3 -1;
+			var iii = i*3;
+			var a = array[ii].division;
+			var b = array[iii].division;
+			if(a!=b){
+				array.splice(i*3-1,0,alphabet);
+			}
+		}
+		if(array.length%3!=0){
+			array.push(alphabet);
+		}
+		
+		// 글 조합
+		$.each(array, function(index,item){
+			var nokori = index%3;
+			if(nokori==0){
+			cho=item.index;
+			}else if(nokori==1){
+			jun=item.index;
+			}else if(nokori==2){
+			jon=item.index;
+			cho *= 1;
+			jun *= 1;
+			jon *= 1;
+			var temp = (0xAC00 + 28 * 21 *(cho) + 28 * (jun) + (jon));
+			han +=  String.fromCharCode(temp);
+			$('test3').html(han); //test3에 글 찍기 
+			}
+		}
+}// 글자 보이기 
+
+//조합된 글 목소리로! 
+function rss(){
+	VoiceRSS.speech({
+        key: '2330e4438d154c34803f4f4e72f066fa',
+        src: han,
+        hl: 'ko-kr',
+        r: 0, 
+        c: 'mp3',
+        f: '44khz_16bit_stereo',
+        ssml: false
+    });
+	
+}
 
 </script>
 </head>
@@ -271,7 +330,7 @@ $(function() {
 <div id="test">
 </div>
 
-
+<div id="test3"></div>
 
 </body>
 </html>
