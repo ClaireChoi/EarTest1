@@ -130,6 +130,60 @@ tr.hit {
 
 	$(function() {
 
+		function assemble() {
+			alert("assemble start!");
+			//종성 넣기 - 마침표 액션 들어오면 실행
+			var alphabet = {
+				"division" : "0",
+				"indicator" : "0"
+			};
+			for (var i = 1; i * 3 < array.length; i++) {
+				var ii = i * 3 - 1;
+				var iii = i * 3;
+				var a = array[ii].division;
+				var b = array[iii].division;
+				if (a != b) {
+					array.splice(i * 3 - 1, 0, alphabet);
+				}
+			}
+			if (array.length % 3 != 0) {
+				array.push(alphabet);
+			}
+
+			// 글 조합
+			$.each(array, function(index, item) {
+				var nokori = index % 3;
+				if (nokori == 0) {
+					cho = item.index;
+				} else if (nokori == 1) {
+					jun = item.index;
+				} else if (nokori == 2) {
+					jon = item.index;
+					cho *= 1;
+					jun *= 1;
+					jon *= 1;
+					var temp = (0xAC00 + 28 * 21 * (cho) + 28 * (jun) + (jon));
+					han += String.fromCharCode(temp);
+					$('test3').html(han); //test3에 글 찍기 
+				}
+			});
+		}// 글자 보이기 
+
+		//조합된 글 목소리로! 
+		function rss() {
+			VoiceRSS.speech({
+				key : '2330e4438d154c34803f4f4e72f066fa',
+				src : han,
+				hl : 'ko-kr',
+				r : 0,
+				c : 'mp3',
+				f : '44khz_16bit_stereo',
+				ssml : false
+			});
+
+		}
+		
+		
 		setInterval(function() {
 			
 			var handType="";
@@ -230,18 +284,18 @@ tr.hit {
 				});//ajax
 			}//if rightHand
 			else if (handType == 'left') {
-				
+				var gestureType = "";
 				if (frameCopy.gestures.length > 0) {
 				    for (var i = 0; i < frameCopy.gestures.length; i++) {
 				      var gesture = frameCopy.gestures[i];
-				 		gestureType = gusture.type;
-						alert(gestureType);
+				 		gestureType = gesture.type;
+						//alert(gesture.type);
 				 }
 				}
 				switch (gestureType) {
 				case "circle":
-					//assemble();
 					alert("circle!!");
+					assemble();
 					break;
 				case "swipe":
 					alert("swipe!!");
@@ -254,60 +308,11 @@ tr.hit {
 			}//if leftHand
 		}, 250);
 
+		
+		
 	});
 
-	function assemble() {
-
-		//종성 넣기 - 마침표 액션 들어오면 실행
-		var alphabet = {
-			"division" : "0",
-			"indicator" : "0"
-		};
-		for (var i = 1; i * 3 < array.length; i++) {
-			var ii = i * 3 - 1;
-			var iii = i * 3;
-			var a = array[ii].division;
-			var b = array[iii].division;
-			if (a != b) {
-				array.splice(i * 3 - 1, 0, alphabet);
-			}
-		}
-		if (array.length % 3 != 0) {
-			array.push(alphabet);
-		}
-
-		// 글 조합
-		$.each(array, function(index, item) {
-			var nokori = index % 3;
-			if (nokori == 0) {
-				cho = item.index;
-			} else if (nokori == 1) {
-				jun = item.index;
-			} else if (nokori == 2) {
-				jon = item.index;
-				cho *= 1;
-				jun *= 1;
-				jon *= 1;
-				var temp = (0xAC00 + 28 * 21 * (cho) + 28 * (jun) + (jon));
-				han += String.fromCharCode(temp);
-				$('test3').html(han); //test3에 글 찍기 
-			}
-		});
-	}// 글자 보이기 
-
-	//조합된 글 목소리로! 
-	function rss() {
-		VoiceRSS.speech({
-			key : '2330e4438d154c34803f4f4e72f066fa',
-			src : han,
-			hl : 'ko-kr',
-			r : 0,
-			c : 'mp3',
-			f : '44khz_16bit_stereo',
-			ssml : false
-		});
-
-	}
+	
 </script>
 </head>
 <body>
