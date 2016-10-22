@@ -169,6 +169,7 @@ tr.hit {
 					jun *= 1;
 					jon *= 1;
 					var temp = (0xAC00 + 28 * 21 * (cho) + 28 * (jun) + (jon));
+					//요기 중요
 					han += String.fromCharCode(temp);
 					$('#test3').html(han); //test3에 글 찍기 
 				}
