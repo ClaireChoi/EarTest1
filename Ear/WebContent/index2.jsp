@@ -29,6 +29,7 @@ tr.hit {
 <script src="http://js.leapmotion.com/leap-0.6.3.min.js"></script>
 <script src="script/jquery-3.1.0.min.js" type="text/javascript"></script>
 <script>
+
 	// Store frame for motion functions
 	var previousFrame = null;
 	var paused = false;
@@ -50,6 +51,10 @@ tr.hit {
 	var array = [];
 	var han = '';
 
+	var cho ='';
+	var jun ='';
+	var jon ='';
+	
 
 	Leap.loop(controllerOptions, function(frame) {
 		if (paused) {
@@ -86,14 +91,9 @@ tr.hit {
 		handOutput.innerHTML = handString;
 
 		
-		
-		
 		// Store frame for motion functions
 		frameCopy = frame;
 		previousFrame = frame;
-
-		
-		
 		
 		
 	})//loop
@@ -137,6 +137,8 @@ tr.hit {
 				"division" : "0",
 				"indicator" : "0"
 			};
+			
+			
 			for (var i = 1; i * 3 < array.length; i++) {
 				var ii = i * 3 - 1;
 				var iii = i * 3;
@@ -150,21 +152,25 @@ tr.hit {
 				array.push(alphabet);
 			}
 
+			
+			alert(array.length);
+			
+			
 			// 글 조합
 			$.each(array, function(index, item) {
 				var nokori = index % 3;
 				if (nokori == 0) {
-					cho = item.index;
+					cho = item.indicator;
 				} else if (nokori == 1) {
-					jun = item.index;
+					jun = item.indicator;
 				} else if (nokori == 2) {
-					jon = item.index;
+					jon = item.indicator;
 					cho *= 1;
 					jun *= 1;
 					jon *= 1;
 					var temp = (0xAC00 + 28 * 21 * (cho) + 28 * (jun) + (jon));
 					han += String.fromCharCode(temp);
-					$('test3').html(han); //test3에 글 찍기 
+					$('#test3').html(han); //test3에 글 찍기 
 				}
 			});
 		}// 글자 보이기 
@@ -268,7 +274,9 @@ tr.hit {
 							alphabet.division // 구분자
 							alphabet.indicator // index
 						 */
-						array.push(alphabet);
+						 if (alphabet!=null) {
+							array.push(alphabet);
+						}
 
 						$("div#test2").html(function(index, html) {
 							return html += alphabet.letter;
@@ -295,13 +303,13 @@ tr.hit {
 				switch (gestureType) {
 				case "circle":
 					alert("circle!!");
-					assemble();
-					break;
-				case "swipe":
-					alert("swipe!!");
 					/* 
 						오타 삭제 내용;
 					 */
+					break;
+				case "swipe":
+					alert("swipe!!");
+					assemble();
 					break;
 				}//switch */
 
