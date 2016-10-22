@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Leap Motion JavaScript Sample</title>
+<!-- speech style import -->
+<style type="text/css" src="css/speech.css"></style>
 
 <style>
 th {
@@ -28,6 +30,38 @@ tr.hit {
 <script src="tts.js/voicerss-tts.min.js"></script>
 <script src="http://js.leapmotion.com/leap-0.6.3.min.js"></script>
 <script src="script/jquery-3.1.0.min.js" type="text/javascript"></script>
+
+<!-- speech script start -->
+<script>
+(function(e, p){
+    var m = location.href.match(/platform=(win8|win|mac|linux|cros)/);
+    e.id = (m && m[1]) ||
+           (p.indexOf('Windows NT 6.2') > -1 ? 'win8' : p.indexOf('Windows') > -1 ? 'win' : p.indexOf('Mac') > -1 ? 'mac' : p.indexOf('CrOS') > -1 ? 'cros' : 'linux');
+    e.className = e.className.replace(/\bno-js\b/,'js');
+  })(document.documentElement, window.navigator.userAgent)
+    </script>
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
+    <meta content=
+    "Google Chrome is a browser that combines a minimal design with sophisticated technology to make the web faster, safer, and easier."
+    name="description">
+    
+    <link href="https://plus.google.com/100585555255542998765" rel="publisher">
+    <link href="//www.google.com/images/icons/product/chrome-32.png" rel="icon" type="image/ico">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel=
+    "stylesheet">
+    <script src="//www.google.com/js/gweb/analytics/autotrack.js"/></script>
+    <script src="//www.google.com/js/gweb/analytics/doubletrack.js"></script>
+
+    <script>
+		new gweb.analytics.AutoTrack({
+          profile: 'UA-26908291-1'
+        });
+    </script>
+    
+    
+<!-- speech script end -->
+
 <script>
 
 	// Store frame for motion functions
@@ -325,6 +359,34 @@ tr.hit {
 </head>
 <body>
 	<h1>Leap Motion JavaScript Sample</h1>
+	
+	<!-- speech Dom start -->
+	<div class="browser-landing" id="main">
+      <div class="compact marquee-stacked" id="marquee">
+        <div class="marquee-copy">
+          
+        </div>
+      </div>
+      <div class="compact marquee">
+    
+        <div id="results">
+          <span class="final" id="final_span"></span> <span class="interim" id=
+          "interim_span"></span>
+        </div>
+
+        <div class="compact marquee" id="div_language">
+          <select id="select_language" onchange="updateCountry()">
+            </select>&nbsp;&nbsp; <select id="select_dialect">
+            </select>
+        </div>
+      </div>
+     </div>
+     <!-- speech script import -->
+     <script type="text/javascript" src="script/speech.js"></script>
+	<!-- speech Dom end -->
+	
+	
+	
 	<div id="main">
 		<button id="pause" onclick="togglePause()">Pause</button>
 		<input type="checkbox" id="pauseOnGesture"
