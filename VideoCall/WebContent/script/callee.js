@@ -5,7 +5,7 @@
  
     var connectChannelIdInput = document.querySelector('#connectChannelId');
     var connectChannelButton = document.querySelector('#connectChannel');
-    var connectChannelValue = document.getElementById('#channelId_callee');
+    var connectChannelValue = document.getElementById("channelId_callee");
     var appCallee;
     var channelId = '';
     var pid = '';
@@ -19,9 +19,7 @@
 
     appCallee.on('ring', function(pid, uid) {
     	this.pid = pid;
-    	alert('pid는 :' + pid);
       if (window.confirm('callee : Would you like to get a call?')) {
-    	  alert('callee: channel:'+channelId);
         appCallee.accept(pid);
       } else {
         appCallee.reject(pid);
@@ -30,16 +28,13 @@
 
     connectChannelButton.addEventListener('click', function(event) {
       channelId = connectChannelIdInput.value;
-      alert('callee:'+channelId);
-      
-     // connectChannelValue.innerHTML = channelId;
+     connectChannelValue.value = channelId;
 
       event.preventDefault();
       if (!channelId) {
         return;
       }
       appCallee.connectChannel(channelId);
-      alert('callee : connectChannel' + channelId);
     }, false);
     
     $('#disconnectChannel_callee').on('click', function(event){

@@ -36,14 +36,42 @@
             <div class="container clearfix">
               <div class="row">
                 <div class="col-md-8 col-md-offset-2 col-sm-12">
-                  <p class="italic">Oh, hello, nice to meet you!</p>
+                  <p class="italic">수화통역 화상통화 서비스</p>
                   <h1>Welcome to E:ar</h1>
+                  <h1>환영합니다!</h1>
                   <p class="italic">we offer people not only who use sign language but also who does not a perfect video calling system.</p>
                   <p class="italic">Scroll down, Try it!</p>
                 </div>
               </div>
             </div>
           </div>
+          <div class="icon faa-float animated"><i class="fa fa-angle-double-down"></i></div>
+        </section>
+        <!-- page2 : 립모션사용자 vs 일반사용자 구분 -->
+        <section id="page111">
+        <h1 id="page111_title">본 사이트 사용법</h1> <!-- 제목 보이게 바꾸기  -->
+          <div id="overlay_left"></div><!-- 뒷배경overlay -->
+          <div id="left_bg">
+          <h1> 왼쪽테스트 </h1>
+          
+          <h2> 립모션사용자는 체크해주세요 </h2>
+          <img src="img/non_check.png" id="checkbox_leapmotion"/>
+          </div>
+          <div id="overlay_right"><h1>오른쪽테스트</h1></div>
+          <div id="right_bg"></div>
+         <!--  <div class="content">
+            <div class="container clearfix">
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-12">
+                  <p class="italic">수화통역 화상통화 서비스</p>
+                  <h1>Welcome to E:ar</h1>
+                  <h1>환영합니다!</h1>
+                  <p class="italic">we offer people not only who use sign language but also who does not a perfect video calling system.</p>
+                  <p class="italic">Scroll down, Try it!</p>
+                </div>
+              </div>
+            </div>
+          </div> -->
           <div class="icon faa-float animated"><i class="fa fa-angle-double-down"></i></div>
         </section>
         
@@ -101,7 +129,7 @@
                 <!-- <div id="target1"> -->
                 <div class="col-md-6"> 
                   <h2 class="heading">CALLING...</h2>
-                   <h2 id="channelId_callee"></h2>
+                   <h2 id="channelId_caller"></h2>
                    <button class="btn btn-default" id="disconnectChannel_caller">
 				            <span class="glyphicon glyphicon-earphone" aria-hidden="true"> Disconnect
 				   </button>
@@ -118,7 +146,7 @@
             </div>
           </div>
         </section>
-        <!-- page 3 Callee-->
+        <!-- page 4 Callee-->
         <section id="page2">
        				<p id="capption"></p><video class="remote-video center-block" id="calleeRemoteVideo"></video>
         			<p id="capption"></p><video class="local-video pull-right" id="calleeLocalVideo"></video>
@@ -376,14 +404,13 @@
     <script src="script/playrtc.min.js"></script>
     <script src="script/jquery-1.11.0.min.js"></script>
     <script src="script/jquery.onepage-scroll.js"></script>
-	<script src="script/caller.js"></script>
-    <script src="script/callee.js"></script>
     <script>window.jQuery || document.write('<script src="script/jquery-1.11.0.min.js"><\/script>')</script>
     <script src="script/bootstrap.min.js"></script>
     <script src="script/jquery.cookie.js"></script>
     <script src="script/front.js"></script>
-   <!--  <script src="script/config.js"></script>
-    <script src="script/config1.js"></script> -->
+    <script src="script/custom.js"></script>
+	<script src="script/caller.js"></script>
+    <script src="script/callee.js"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

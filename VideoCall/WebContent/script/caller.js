@@ -5,6 +5,7 @@
     
     var createChannelButton = document.querySelector('#createChannel');
     var createChannelIdInput = document.querySelector('#createChannelId');
+    var connectChValue = document.getElementById("channelId_caller");
     var appCaller;
 
     appCaller = new PlayRTC({
@@ -15,14 +16,12 @@
     });
 
     appCaller.on('connectChannel', function(channelId) {
-    	
       createChannelIdInput.value = channelId;
-      alert('caller : connectChannel' + channelId);
+      connectChValue.innerHTML = channelId;
     });
 
     appCaller.on('ring', function(pid, uid) {
       if (window.confirm('caller : Would you like to get a call?')) {
-        alert('pid : ' + pid);
     	  appCaller.accept(pid);
       } else {
     	  alert('pid reject');
@@ -39,7 +38,6 @@
     });
 
     createChannelButton.addEventListener('click', function(event) {
-    	alert('addEventListener');
       event.preventDefault();
       appCaller.createChannel();
     }, false);
