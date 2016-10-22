@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Leap Motion JavaScript Sample</title>
 <!-- speech style import -->
-<style type="text/css" src="css/speech.css"></style>
+<link rel="stylesheet" type="text/css" href="css/speech.css">
 
 <style>
 th {
