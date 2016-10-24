@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default, json-default">
+
+        <default-action-ref name="index" />
+
+        <action name="index">
+            <result>index.html</result>
+        </action>
+        
+        <!-- <action name="req" class="actions.RecoAction" method="req">
+        	<result type="json"></result>
+        </action> -->
+        
+        <action name="find" class="actions.RecoAction2" method="find">
+        	<result type="json"></result>
+        </action>
+        
+        
+        <!-- <action name="test" class="actions.RecoAction" method="test">
+        	<result type="json"></result>
+        </action> -->
+        
+        
+    </package>
+
+    <!-- Add packages here -->
+
+</struts>
