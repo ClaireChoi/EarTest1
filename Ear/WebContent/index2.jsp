@@ -383,6 +383,7 @@ tr.hit {
 					/* 
 						오타 삭제 내용;
 					 */
+					 array.splice(array.length-1,1);
 					break;
 				case "swipe":
 					alert("swipe!!");
