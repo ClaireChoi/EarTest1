@@ -174,8 +174,8 @@ tr.hit {
 			};
 			for(var i = 0;i<array.length ; i++){
 				if(array[i].division==2){
-					sftAlphabet.indicator = array[i+1].indicator+1; //쌍자음용 자음 (ㄱ,ㅅ,ㄷ,ㅈ,ㅂ) +1 하면 쌍자음의 인덱스
-					array.splice(i,2,sftAlphabet) //sht 신호와 단자음 객체를 빼고 쌍자음의 indicator를 가진 sftAlphabet 객체를 추가
+					array[i+1].indicator++; //쌍자음용 자음 (ㄱ,ㅅ,ㄷ,ㅈ,ㅂ) +1 하면 쌍자음의 인덱스
+					array.splice(i,1); //sht 신호와 단자음 객체를 빼고 쌍자음의 indicator를 가진 sftAlphabet 객체를 추가
 				}
 				
 			}			
@@ -184,7 +184,7 @@ tr.hit {
 				var a = array[i];
 				var b = array[i+1];
 				var c = array[i+2];
-				if(a.division==b.division&&a==c.division){//쌍자음을 걸러낸 후에도 연속된 3개의 자음이 있으면 첫번 째 두번 째 자음을 합친 종성자음을 만든다. 
+				if(a.division==b.division&&a.division==c.division){//쌍자음을 걸러낸 후에도 연속된 3개의 자음이 있으면 첫번 째 두번 째 자음을 합친 종성자음을 만든다. 
 					if(a.indicator==0  &&b.indicator==9  ){//ㄳ0,9
 						sftAlphabet.indicator= 2;
 					}else if(a.indicator==2 &&b.indicator==12){//ㄵ 2,12
@@ -243,9 +243,11 @@ tr.hit {
 					cho *= 1;
 					jun *= 1;
 					jon *= 1;
+					if(jon!=0){jon++;}
 					var temp = (0xAC00 + 28 * 21 * (cho) + 28 * (jun) + (jon));
 					han += String.fromCharCode(temp);
 					$('#test3').html(han); //test3에 글 찍기 
+					array=[];
 				}
 			});
 		}// 글자 보이기 
