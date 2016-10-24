@@ -217,13 +217,13 @@ input#createChannelId {
 input#reset_btn{
 	display: none;
 }
-#rightcolumn_result{
+/* #rightcolumn_result{
 	background: pink;
 	height: 40%;
 	position: relative;
 	top: 48%;
 	margin-left: -2px;
-}
+} */
 #callerLocalVideo {
   width: 400px;
   height: 300px;
