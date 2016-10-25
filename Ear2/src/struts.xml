@@ -12,7 +12,7 @@
         <default-action-ref name="index" />
 
         <action name="index">
-            <result>index.html</result>
+            <result>/test01.html</result>
         </action>
         
         <!-- <action name="req" class="actions.RecoAction" method="req">
@@ -24,13 +24,7 @@
         </action>
         
         
-        <!-- <action name="test" class="actions.RecoAction" method="test">
-        	<result type="json"></result>
-        </action> -->
-        
-        
     </package>
 
-    <!-- Add packages here -->
 
 </struts>

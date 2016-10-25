@@ -115,46 +115,26 @@
 		var jun ='';
 		var jon ='';
 		
-	
+		
+		var handType="";
+		var timeId=''; 
+		
+		
 		Leap.loop(controllerOptions, function(frame) {
 			if (paused) {
 				return; // Skip this update
 			}
 	
 			// Display Hand object data
-			var handOutput = document.getElementById("handData");
-			var handString = "";
 			if (frame.hands.length > 0) {
 				for (var i = 0; i < frame.hands.length; i++) {
 					var hand = frame.hands[i];
 					handType = hand.type;
-					handString += hand.type + " ";
-					handString += "Palm position: "
-							+ vectorToString(hand.palmPosition) + " mm<br />";
-	
-					if (hand.pointables.length > 0) {
-						var fingerIds = [];
-						for (var j = 0; j < hand.pointables.length; j++) {
-							var pointable = hand.pointables[j];
-							fingerIds.push(pointable.id);
-						}
-						if (fingerIds.length > 0) {
-							handString += "Fingers IDs: " + fingerIds.join(", ")
-									+ "<br />";
-						}
-					}
-					handString += "</div>";
-				}
-			} else {
-				handString += "No hands";
 			}
-			handOutput.innerHTML = handString;
-	
-			
 			// Store frame for motion functions
 			frameCopy = frame;
 			previousFrame = frame;
-			
+			}
 			
 		})//loop
 	
@@ -171,27 +151,11 @@
 			return fingers;
 		}
 	
-		/* function togglePause() {
-		 paused = !paused;
-		 if (paused) {
-		 document.getElementById("pause").innerText = "Resume";
-		 } else {
-		 document.getElementById("pause").innerText = "Pause";
-		 }
-		 }
-	
-		 function pauseForGestures() {
-		 if (document.getElementById("pauseOnGesture").checked) {
-		 pauseOnGesture = true;
-		 } else {
-		 pauseOnGesture = false;
-		 }
-		 } */
 	
 		$(function() {
 	
 			function assemble() {
-				alert("assemble start!");
+				//alert("assemble start!");
 	
 				//쌍자음 구별하기 
 				var sftAlphabet = {
@@ -250,7 +214,7 @@
 					array.push(alphabet);
 				}
 				
-				alert(array.length);
+				//alert(array.length);
 				
 				// 글 조합
 				$.each(array, function(index, item) {
@@ -272,10 +236,14 @@
 						if(jon!=0){jon++;}
 						var temp = (0xAC00 + 28 * 21 * (cho) + 28 * (jun) + (jon));
 						han += String.fromCharCode(temp);
-						$('#test3').html(han); //test3에 글 찍기 
-						array=[];
 					}
 				});
+				if (han.length>0) {
+					$('p#singRecog').html(han); //글 찍기 
+					rss();
+				}
+				array=[];
+				han='';
 			}// 글자 보이기 
 	
 			//조합된 글 목소리로! 
@@ -294,14 +262,13 @@
 			
 			
 			setInterval(function() {
-				
-				var handType="";
-				if (frameCopy.hands.length > 0) {
-					for (var i = 0; i < frameCopy.hands.length; i++) {
-						var hand = frameCopy.hands[i];
-						handType = hand.type;
-					}
-				}
+				if (timeId=='') {
+					timeId = setInterval(recog, 250);
+				} 
+			}, 250);
+			
+			
+			function recog() {
 				
 				if (handType == 'right') {
 	
@@ -314,32 +281,7 @@
 							direction : vectorToString(pointable.direction)
 						}
 					}
-	
-					var row = "<tr id='temp'>" + "<td>"
-							+ coordinates[0].direction.x + "</td>" + "<td>"
-							+ coordinates[0].direction.y + "</td>" + "<td>"
-							+ coordinates[0].direction.z + "</td>" + "<td>"
-							+ coordinates[1].direction.x + "</td>" + "<td>"
-							+ coordinates[1].direction.y + "</td>" + "<td>"
-							+ coordinates[1].direction.z + "</td>" + "<td>"
-							+ coordinates[2].direction.x + "</td>" + "<td>"
-							+ coordinates[2].direction.y + "</td>" + "<td>"
-							+ coordinates[2].direction.z + "</td>" + "<td>"
-							+ coordinates[3].direction.x + "</td>" + "<td>"
-							+ coordinates[3].direction.y + "</td>" + "<td>"
-							+ coordinates[3].direction.z + "</td>" + "<td>"
-							+ coordinates[4].direction.x + "</td>" + "<td>"
-							+ coordinates[4].direction.y + "</td>" + "<td>"
-							+ coordinates[4].direction.z + "</td>" + "</tr>";
-	
-					//var preTemp = $('tr#temp');
-	
-					/* if (preTemp !=null) {
-						preTemp.remove();
-					} */
-	
-					var insertedRow = $(row).appendTo("table");
-	
+					
 					var temp = {
 						"fingerdata.thumb_x" : coordinates[0].direction.x,
 						"fingerdata.thumb_y" : coordinates[0].direction.y,
@@ -379,20 +321,18 @@
 							 */
 							 if (alphabet!=null) {
 								array.push(alphabet);
+								$('p#singRecog').html(function(index, html) {
+									return html += alphabet.letter;
+								});
 							}
-	
-							$("div#test2").html(function(index, html) {
-								return html += alphabet.letter;
-							});
-	
-							insertedRow.attr('class', "hit");
-						}
+						}//success
 						,
 						error : function() {
-							alert("ㄴㄴ;;");
-						}
+							
+						}//error
 	
 					});//ajax
+					
 				}//if rightHand
 				else if (handType == 'left') {
 					var gestureType = "";
@@ -405,21 +345,28 @@
 					}
 					switch (gestureType) {
 					case "circle":
-						alert("circle!!");
+						//alert("circle!!");
 						/* 
 							오타 삭제 내용;
 						 */
 						 array.splice(array.length-1,1);
+						 $('p#singRecog').html(function(index, html) {
+								return html.substring(0,html.length-1);
+							});
+						clearInterval(timeId);
+						timeId='';
 						break;
 					case "swipe":
-						alert("swipe!!");
+						//alert("swipe!!");
 						assemble();
+						clearInterval(timeId);
+						timeId='';
 						break;
 					}//switch */
 	
 				}//if leftHand
-			}, 250);
-	
+			}//recog
+			
 			
 			
 		});
@@ -539,6 +486,13 @@
 	        	<video class="local-video pull-right" id="callerLocalVideo"></video>
 	        	<video class="local-video pull-right" id="calleeLocalVideo"></video>
 	        	
+	        	
+	        	<!-- sing recognition start -->
+	        	<p id="singRecog">
+	        	
+	        	
+	        	</p>
+	        	
 				<!-- speech Dom start -->
 				<!--  -->
 				<!--  -->
@@ -635,333 +589,12 @@
           </div>
         </section>
         
-        <!-- page 2 / 방 개설/연결 선택창-->
-<!--         <section id="page5" class="section-gray">
-          <div class="content">
-            <div class="container clearfix">
-              <div class="row">
-                <div class="col-md-12">
-                  <a href="NewFile.html"><h2 class="heading">통화시작</h2></a>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <p>전화거시려면</p>
-                      <p>  <h3 class="h4">채널생성&연결</h3>
-				        <form class="form-inline">
-				          <div class="form-group">
-				            <label class="sr-only" for="createChannelId">Channel Id</label>
-				            <input class="form-control" type="text" id="createChannelId" placeholder="Create a channel." value="" readonly>
-				          </div>
-				          <button class="btn btn-default" id="createChannel">
-				            <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Create channel
-				          </button>
-				          
-				          
-				        </form>
-                    </div>
-                    <div class="col-sm-6">
-                      <p>전화받으시려면 </p>
-                      <p><h3 class="h4">채널연결</h3>
-				        <form class="form-inline">
-				          <div class="form-group">
-				            <label class="sr-only" for="connectChannelId">Channel Id</label>
-				            <input class="form-control" type="text" id="connectChannelId" placeholder="Enter the ChannelId." value="">
-				          </div>
-				         
-				          <button class="btn btn-default" id="connectChannel">
-				            <span class="glyphicon glyphicon-earphone" aria-hidden="true"> Connect channel
-				          </button>
-				        </form></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> -->
-        
-          <!-- page 3 Caller-->
-       <!-- <section id="page2">
-                  	<p id="capption"></p><video class="remote-video center-block" id="callerRemoteVideo"></video>
-       				<p id="capption"></p><video class="local-video pull-right" id="callerLocalVideo"></video>
-          <div class="contentPage3">
-            <div class="container clearfix">
-              <div class="row">
-                <div id="target1">
-                <div class="col-md-6"> 
-                  <h2 class="heading">CALLING...</h2>
-                   <h2 id="channelId_caller"></h2>
-                   <button class="btn btn-default" id="disconnectChannel_caller">
-				            <span class="glyphicon glyphicon-earphone" aria-hidden="true"> Disconnect
-				   </button>
-                  
-                  <p class="lead">
-                  
-                  </p>
-                </div>
-                </div>
-                <div class="col-md-5 col-md-offset-1">
-                  <p><img src="img/2.gif" alt="" class="img-responsive img-circle"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        page 4 Callee
-        <section id="page2">
-       				<p id="capption"></p><video class="remote-video center-block" id="calleeRemoteVideo"></video>
-        			<p id="capption"></p><video class="local-video pull-right" id="calleeLocalVideo"></video>
-          <div class="contentPage3">
-            <div class="container clearfix">
-              <div class="row">
-                <div id="target1">
-                <div class="col-md-6"> 
-                  <h2 class="heading">CALLING...</h2>
-                  <input type="text" id="channelId_callee"></input>
-                  
-                  <p class="lead">
-                  
-                  </p>
-                </div>
-                </div>
-                <div class="col-md-5 col-md-offset-1">
-                  <p><img src="img/2.gif" alt="" class="img-responsive img-circle"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> -->
-        
-        <!-- page 3 - class section-gray adds gray background-->
-        <!-- <section id="page3" class="section-gray">
-          <div class="content">
-            <div class="container clearfix">
-              <div class="row services">
-                <div class="col-md-12">
-                  <h2 class="heading">Services</h2>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <div class="box">
-                        <div class="icon"><i class="fa fa-desktop"></i></div>
-                        <h4 class="heading">Webdesign</h4>
-                        <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them.</p>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="box">
-                        <div class="icon"><i class="fa fa-print"></i></div>
-                        <h4 class="heading">Print</h4>
-                        <p>Advantage old had otherwise sincerity dependent additions. It in adapted natural.</p>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="box">
-                        <div class="icon"><i class="fa fa-globe"></i></div>
-                        <h4 class="heading">SEO and SEM</h4>
-                        <p>Am terminated it excellence invitation projection as. She graceful shy. </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <div class="box">
-                        <div class="icon"><i class="fa fa-lightbulb-o"></i></div>
-                        <h4 class="heading">Consulting</h4>
-                        <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them.</p>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="box">
-                        <div class="icon"><i class="fa fa-envelope-o"></i></div>
-                        <h4 class="heading">Email Marketing</h4>
-                        <p>Advantage old had otherwise sincerity dependent additions. It in adapted natural.</p>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="box">
-                        <div class="icon"><i class="fa fa-user"></i></div>
-                        <h4 class="heading">UX &amp; UI</h4>
-                        <p>Am terminated it excellence invitation projection as. She graceful shy. </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="page4">
-          <div class="content">
-            <div class="container clearfix">
-              <div class="row">
-                <div class="col-md-12">
-                  <h2 class="heading">Portfolio</h2>
-                  <p class="text-center">You can make also a portfolio or image gallery.</p>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <div class="box"><a href="#" title=""><img src="img/portfolio-1.jpg" alt="" class="img-responsive"></a></div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="box"><a href="#" title=""><img src="img/portfolio-2.jpg" alt="" class="img-responsive"></a></div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="box"><a href="#" title=""><img src="img/portfolio-3.jpg" alt="" class="img-responsive"></a></div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <div class="box"><a href="#" title=""><img src="img/portfolio-4.jpg" alt="" class="img-responsive"></a></div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="box"><a href="#" title=""><img src="img/portfolio-5.jpg" alt="" class="img-responsive"></a></div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="box"><a href="#" title=""><img src="img/portfolio-6.jpg" alt="" class="img-responsive"></a></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        page 6
-        <section id="page6">
-          <div class="content">
-            <div class="container clearfix">
-              <div class="row">
-                <div class="col-md-12">
-                  <h2 class="heading">Contact</h2>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <form id="contact-form" method="post" action="contact.php" class="contact-form">
-                        <div class="controls">
-                          <div class="row">
-                            <div class="col-sm-6">
-                              <div class="form-group">
-                                <label for="name">Your firstname *</label>
-                                <input type="text" name="name" placeholder="Enter your firstname" required="required" class="form-control">
-                              </div>
-                            </div>
-                            <div class="col-sm-6">
-                              <div class="form-group">
-                                <label for="surname">Your lastname *</label>
-                                <input type="text" name="surname" placeholder="Enter your  lastname" required="required" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="surname">Your email *</label>
-                            <input type="email" name="email" placeholder="Enter your  email" required="required" class="form-control">
-                          </div>
-                          <div class="form-group">
-                            <label for="surname">Your message for us *</label>
-                            <textarea rows="4" name="message" placeholder="Enter your message" required="required" class="form-control"></textarea>
-                          </div>
-                          <div class="text-center">
-                            <input type="submit" name="name" value="Send message" class="btn btn-primary btn-block">
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Effects present letters inquiry no an removed or friends. Desire behind latter me though in. Supposing shameless am he engrossed up additions. My possible peculiar together to. Desire so better am cannot he up before points. Remember mistaken opinions it pleasure of debating. Court front maids forty if aware their at. Chicken use are pressed removed. </p>
-                      <p>Able an hope of body. Any nay shyness article matters own removal nothing his forming. Gay own additions education satisfied the perpetual. If he cause manor happy. Without farther she exposed saw man led. Along on happy could cease green oh. </p>
-                      <p class="social"><a href="#" title="" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" title="" class="twitter"><i class="fa fa-twitter"></i></a><a href="#" title="" class="gplus"><i class="fa fa-google-plus"></i></a><a href="#" title="" class="instagram"><i class="fa fa-instagram"></i></a><a href="#" title="" class="email"><i class="fa fa-envelope"></i></a></p>
-                    </div>
-                  </div>
-                  <div class="row copyright">
-                    <div class="col-md-6">
-                      <p>&copy;2015 Your name/company goes here</p>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="credit">Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a></p>
-                      Please do not remove the backlink to us. It is part of the licence conditions. Thanks for understanding :)
-                     
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div> -->
-    
-<!--     Modal
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Config</h4>
-        </div>
-        <div class="modal-body">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="turnIp">Project Key</label><br/>
-                <input type="text" class="form-control" value="60ba608a-e228-4530-8711-fa38004719c1" id="projectKey">
-            </div>
-          <div class="form-group">
-              <label for="turnIp">TURN</label><br/>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="optionsRadios" value="nagTurn" checked> 일반
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="optionsRadios" value="userTurn"> 사용자 설정
-                </label>
-              </div>
-            </div> 
-            <div class="form-group" style="display: none;" id="userTurnSetting">
-              <input type="text" class="form-control" id="turnIp" placeholder="127.0.0.1:8888">
-              <input type="text" class="form-control" id="turnUsername" placeholder="아이디를 입력하세요">
-              <input type="text" class="form-control" id="turnPwd" placeholder="비밀번호를 입력하세요">
-            </div>
-            <div class="form-group">
-              <label for="turnIp">Resolution</label><br/>
-              Min <input type="text" class="form-control" value="640" id="minWidth"> X <input type="text" class="form-control" value="480" id="minHeight">
-              <br/>
-              Max<input type="text" class="form-control" value="640" id="maxWidth"> X <input type="text" class="form-control" value="480" id="maxHeight">
-            </div>
-            <div class="form-group">
-              <label for="turnIp">Bitrate</label><br/>
-              Min <input type="text" class="form-control" value="20" id="minBitrate">
-              <br/>
-              Max<input type="text" class="form-control" value="30" id="maxBitrate">
-            </div>
-            <div class="form-group">
-              <label for="turnIp">Bandwidth</label><br/>
-              Video <input type="text" class="form-control" value="1500" id="videoBandwidth"> Data <input type="text" class="form-control" value="1638400" id="dataBandwidth">
-            </div>
-            <div class="form-group">
-              <label for="turnIp">TurnOnly Use</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="turnIp">Ring Use</label><br/>
-				<label class="switch">
-				<input type="checkbox" name="ckbTurn" id="ckbTurn">
-					<div class="slider round"></div>
-				</label>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label class="switch">
-				<input type="checkbox" name="ckbRing" id="ckbRing">
-					<div class="slider round"></div>
-				</label>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="configSave">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
     
     
     <!-- Javascript files-->
-    <script src="script/jquery-1.11.0.min.js"></script>
+    <!-- <script src="script/jquery-1.11.0.min.js"></script> -->
     <script src="script/jquery.onepage-scroll.js"></script>
-    <script>window.jQuery || document.write('<script src="script/jquery-1.11.0.min.js"><\/script>')</script>
+    <!-- <script>window.jQuery || document.write('<script src="script/jquery-1.11.0.min.js"><\/script>')</script> -->
     <script src="script/bootstrap.min.js"></script>
     <script src="script/jquery.cookie.js"></script>
     <script src="script/playrtc.js"></script>
