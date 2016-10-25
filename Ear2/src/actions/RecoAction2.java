@@ -17,6 +17,7 @@ public class RecoAction2 extends ActionSupport implements SessionAware{
 
 	private FingerData fingerdata;
 	private Alphabet alphabet;
+	private String channelId;
 
 
 	/*public String find() throws Exception{
@@ -111,6 +112,16 @@ public class RecoAction2 extends ActionSupport implements SessionAware{
 
 	public void setAlphabet(Alphabet alphabet) {
 		this.alphabet = alphabet;
+	}
+
+
+	public String getChannelId() {
+		return channelId;
+	}
+
+
+	public void setChannelId(String channelId) {
+		this.channelId = channelId;
 	}
 
 
