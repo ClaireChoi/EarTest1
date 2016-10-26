@@ -5,9 +5,9 @@
 	<select id="find1" parameterType="fingerData" resultType="fingerData">
 		select *
 		from alphabet
-		where (index_x between #{index_x}-0.1 and #{index_x}+0.1)
-				and (index_y between #{index_y}-0.1 and #{index_y}+0.1)
-				and (index_z between #{index_z}-0.1 and #{index_z}+0.1)
+		where (index_x between #{index_x}-0.2 and #{index_x}+0.2)
+				and (index_y between #{index_y}-0.2 and #{index_y}+0.2)
+				and (index_z between #{index_z}-0.2 and #{index_z}+0.2)
 	</select>
 
 </mapper>

@@ -379,7 +379,7 @@ tr.hit {
 				}
 				switch (gestureType) {
 				case "circle":
-					alert("circle!!");
+					//alert("circle!!");
 					/* 
 						오타 삭제 내용;
 					 */
@@ -393,6 +393,7 @@ tr.hit {
 		        case "keyTap":	
 					alert(gestureType);
 					assemble();
+					rss();
 					break;
 				}//switch */
 
