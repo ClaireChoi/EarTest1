@@ -57,7 +57,7 @@ body {
 
 .local-video {
 	position:absolute;
-	left:43%;
+	left:1%;
 	bottom:3%;
 	z-index:6;
 	width:13%;
