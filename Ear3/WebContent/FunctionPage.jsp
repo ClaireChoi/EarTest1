@@ -244,7 +244,8 @@ body {
 						cho *= 1;
 						jun *= 1;
 						jon *= 1;
-						if(jon!=0||gy==1){jon++;}
+						if(jon==0&&gy==1){jon++;}
+						if(jon!=0){jon++;}
 						var temp = (0xAC00 + 28 * 21 * (cho) + 28 * (jun) + (jon));
 						han += String.fromCharCode(temp);
 					}
