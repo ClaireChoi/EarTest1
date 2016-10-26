@@ -7,7 +7,7 @@ public class VideoAction extends ActionSupport{
 	private String channelId;
 	
 	public String startCall(){
-		System.out.println("channelId : " + channelId);
+		//System.out.println("channelId : " + channelId);
 		return SUCCESS;
 	}
 

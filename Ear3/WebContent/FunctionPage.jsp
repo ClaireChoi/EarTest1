@@ -283,7 +283,8 @@ body {
 			function recog() {
 				
 				if (handType == 'right') {
-	
+					$("#handType").text("오른손");
+					
 					var coordinates = [];
 	
 					for (var i = 0; i < frameCopy.pointables.length; i++) {
@@ -347,6 +348,7 @@ body {
 					
 				}//if rightHand
 				else if (handType == 'left') {
+					$("#handType").text("왼손");
 					var gestureType = "";
 					if (frameCopy.gestures.length > 0) {
 					    for (var i = 0; i < frameCopy.gestures.length; i++) {
@@ -377,6 +379,9 @@ body {
 					}//switch */
 	
 				}//if leftHand
+				else {
+					$("#handType").text("손 없음");
+				}
 			}//recog
 			
 		});
@@ -405,7 +410,7 @@ body {
 		<div id="mySidenav" class="sidenav">
 			
 			
-			<label>수화 내용</label>
+			<label id="handType">수화 내용</label>
 			<p id="singRecog">
 			</p>
 			
