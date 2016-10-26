@@ -235,6 +235,7 @@ body {
 						jun = item.indicator;
 					} else if (nokori == 2) {
 						jon = item.indicator;
+						var gy = item.division;
 						if(jon==2){jon++;} //ㄴ
 						else if(jon==3){jon+=3;}//ㄷ
 						else if(jon==5){jon+=2;}//ㄹ
@@ -243,7 +244,7 @@ body {
 						cho *= 1;
 						jun *= 1;
 						jon *= 1;
-						if(jon!=0){jon++;}
+						if(jon!=0||gy==1){jon++;}
 						var temp = (0xAC00 + 28 * 21 * (cho) + 28 * (jun) + (jon));
 						han += String.fromCharCode(temp);
 					}
