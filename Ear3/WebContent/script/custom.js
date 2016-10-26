@@ -38,29 +38,32 @@ $(function(){
 				      ring: true
 				});
 				
-				appCallee.getChannel("chId", function(data){
+				appCallee.getChannel(chId, function(data){
 					alert('success');
 				 	console.log(data.channelId);
 				 	console.log(data.peers);
 				 	console.log(data.status);
 				 	
-				 	var form = document.getElementById("enter_form");
-					form.submit();
-					
-					alert(' connect submit');
+				 	//alert(data.status)
 				 	
+				 	if (data.status!='nothing') {
+				 		var form = document.getElementById("enter_form");
+						form.submit();
+						alert(' connect submit');
+					} else {
+						alert("해당 채널이 존재하지 않습니다.");
+					}
 				 	
 				}, function(xhr, res){
 					alert('xhr: ' + xhr + 'res : ' + res);
-					return false;
+					alert("접속중에 오류가 발생하였습니다. 새로고침 후 다시 시도해주세요.");
 				});
 				
 			} else {
-			
-			var form = document.getElementById("enter_form");
-			form.submit();
-			
-			alert(' create submit');
+				var form = document.getElementById("enter_form");
+				form.submit();
+				alert(' create submit');
+			}
 			
 			}
 			
@@ -128,7 +131,7 @@ $(function(){
 			      }
 			    });
 			}*/
-	}});
+	});
 	
 	
 });
