@@ -49,6 +49,29 @@
 		var handType="";
 		var timeId=''; 
 		
+		//이중자음 조합
+		function doubIndex(a, b, i){
+			if(a.indicator==0  &&b.indicator==9  ){//ㄳ0,9
+					a.indicator= 2;
+			}else if(a.indicator==2 &&b.indicator==12){//ㄵ 2,12
+				a.indicator= 4;
+			}else if(a.indicator==2 &&b.indicator==18){//ㄶ 2,18
+				a.indicator= 5;
+			}else if(a.indicator==5 &&b.indicator==0){//ㄺ 5,0
+				a.indicator= 8;
+			}else if(a.indicator==5 &&b.indicator==6){//ㄻ 5,6
+				a.indicator=9 ;
+			}else if(a.indicator==5 &&b.indicator==7){//ㄼ 5,7
+				a.indicator= 10;
+			}else if(a.indicator==5  &&b.indicator==18  ){//ㅀ 5,18
+				a.indicator= 14;
+			}else if(a.indicator== 7 &&b.indicator== 9 ){//ㅄ 7,9
+				a.indicator=17 ;
+			}
+				$.extend(a,{"jj":"0"});
+				array.splice(i,1);
+		}	
+		
 		
 		Leap.loop(controllerOptions, function(frame) {
 			if (paused) {
@@ -104,26 +127,19 @@
 					var a = array[i];
 					var b = array[i+1];
 					var c = array[i+2];
-					if(a.division==b.division&&a.division==c.division){//쌍자음을 걸러낸 후에도 연속된 3개의 자음이 있으면 첫번 째 두번 째 자음을 합친 종성자음을 만든다. 
-						if(a.indicator==0  &&b.indicator==9  ){//ㄳ0,9
-							sftAlphabet.indicator= 2;
-						}else if(a.indicator==2 &&b.indicator==12){//ㄵ 2,12
-							sftAlphabet.indicator= 4;
-						}else if(a.indicator==2 &&b.indicator==18){//ㄶ 2,18
-							sftAlphabet.indicator= 5;
-						}else if(a.indicator==5 &&b.indicator==0){//ㄺ 5,0
-							sftAlphabet.indicator= 8;
-						}else if(a.indicator==5 &&b.indicator==6){//ㄻ 5,6
-							sftAlphabet.indicator=9 ;
-						}else if(a.indicator==5 &&b.indicator==7){//ㄼ 5,7
-							sftAlphabet.indicator= 10;
-						}else if(a.indicator==5  &&b.indicator==18  ){//ㅀ 5,18
-							sftAlphabet.indicator= 14;
-						}else if(a.indicator== 7 &&b.indicator== 9 ){//ㅄ 7,9
-							sftAlphabet.indicator=17 ;
-						}
-							array.splice(i,2,sftAlphabet);
-					}
+					if((a.division==b.division&&a.division==c.division)){//쌍자음을 걸러낸 후에도 연속된 3개의 자음이 있으면 첫번 째 두번 째 자음을 합친 종성자음을 만든다. 
+						alert('2중 연속 자음');
+						ss=true;
+					doubIndex(a,b,i+1);
+					}			
+				}
+				
+				//마지막이 이중자음일 때 
+				var len = array.length;
+				var a = array[len-2];
+				var b = array[len-1];
+				if(a.division==b.division){
+					doubIndex(a,b,len-1);
 				}
 				
 				//종성 넣기 - 마침표 액션 들어오면 실행
@@ -156,16 +172,18 @@
 					} else if (nokori == 2) {
 						jon = item.indicator;
 						var gy = item.division;
+						if(item.jj!="0"){
 						if(jon==2){jon++;} //ㄴ
 						else if(jon==3){jon+=3;}//ㄷ
 						else if(jon==5){jon+=2;}//ㄹ
 						else if(jon>=6&&12>=jon){jon+=9;}//ㅁ,ㅂ,ㅅ,ㅇ,ㅈ
 						else if(jon>=14&&18>=jon){jon+=8;}//ㅊ,ㅋ,ㅌ,ㅍ,ㅎ
+						}
 						cho *= 1;
 						jun *= 1;
 						jon *= 1;
-						if(jon==0&&gy==1){jon++;}
 						if(jon!=0){jon++;}
+						if(jon==0&&gy==1){jon++;} //종성 ㄱ 일 때 
 						var temp = (0xAC00 + 28 * 21 * (cho) + 28 * (jun) + (jon));
 						han += String.fromCharCode(temp);
 					}
