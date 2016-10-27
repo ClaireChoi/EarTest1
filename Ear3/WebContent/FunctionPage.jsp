@@ -368,11 +368,9 @@ name="description">
 	
 	<!-- 우측 주요 기능 나오는 곳 -->
 	<div id="right_menu">
-		<span style="font-size:30px;cursor:pointer; color:white" class="nav_btn">☰ </span>
-		<div id="mySidenav" class="sidenav">
 			
-			
-			<label id="handType">수화 내용</label>
+			<!-- 주요기능 -->
+			<%-- <label id="handType">수화 내용</label>
 			<p id="singRecog">
 			</p>
 			
@@ -392,28 +390,11 @@ name="description">
 		            </select>
 		        </div>
 			<!-- speech script import -->
-			<script type="text/javascript" src="script/speech.js"></script>
-			<!-- speech Dom end -->	 
+			<script type="text/javascript" src="script/speech.js"></script> --%>
 			
 			
-		</div>
+			
 	</div>
-	<!-- 메뉴오픈 -->
-	<script>
-	$(function(){
-		$(".nav_btn").on("click", function(){
-			if ($('#mySidenav').css('display') == "none") {
-				$('#mySidenav').css('display', 'block');
-				$(".nav_btn").text("X");
-			}
-			else {
-				$('#mySidenav').css('display', 'none');
-				$(".nav_btn").text("☰");
-			}
-		});
-		
-	});
-	</script>
 </div><!-- wrapper -->
 
 </body>
