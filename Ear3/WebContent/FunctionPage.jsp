@@ -381,6 +381,16 @@ name="description">
 		profile: 'UA-26908291-1'
     });
 </script>
+
+<script>
+	$(function(){
+		$('#icon1').on('click', function(){
+			$('#side1').css('display', 'block');	
+		});
+		
+		
+	});
+</script>
 <!-- speech script end -->
     
     
@@ -400,16 +410,17 @@ name="description">
 	
 	<!-- 우측 주요 기능 나오는 곳 -->
 	<div id="right_menu">
+		<span id="icon1" class="icon"><img src="img/icon1.png" /></span>
+		<span id="icon2" class="icon"><img src="img/icon2.png" /></span>
+		<span id="icon3" class="icon"><img src="img/icon3.png" /></span>
+		
+		<div id="side1">
+			<label id="handType">수화 내용</label>
+			<p id="singRecog"></p>
 			
-			<!-- 주요기능 -->
-			<%-- <label id="handType">수화 내용</label>
-			<p id="singRecog">
-			</p>
-			
-			<!-- speech Dom start -->
-			     <div class="compact marquee-stacked" id="marquee">
-			        <div class="marquee-copy"></div>
-			    </div>
+			<div class="compact marquee-stacked" id="marquee">
+		         <div class="marquee-copy"></div>
+		        </div>
 			    
 		        <div id="results">
 		          <span class="final" id="final_span"></span> <span class="interim" id=
@@ -422,9 +433,8 @@ name="description">
 		            </select>
 		        </div>
 			<!-- speech script import -->
-			<script type="text/javascript" src="script/speech.js"></script> --%>
-			<!--commit test -->
-			
+			<script type="text/javascript" src="script/speech.js"></script>
+		</div>	
 			
 	</div>
 </div><!-- wrapper -->
