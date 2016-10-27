@@ -44,7 +44,7 @@
 		var cho ='';
 		var jun ='';
 		var jon ='';
-		
+		var ac = false;
 		
 		var handType="";
 		var timeId=''; 
@@ -72,7 +72,32 @@
 				array.splice(i,1);
 		}	
 		
-		
+		//줄임말
+		function acronym(){
+			if(array.length==2){
+			var a =	array[0];
+			var b =	array[1];
+			if(a.chj==1&&b.chj==1){
+				if(a.indicator==0&&b.indicator==9){//ㄱ ㅅ 감사 0,9
+					han += '감사합니다.';	
+				}else if(a.indicator==5&&b.indicator==11){//ㄹ ㅇ 레알 5,11
+					han += '레알.';
+				}else if(a.indicator==12&&b.indicator==9){//ㅈ ㅅ 죄송 12,9
+					han += '죄송합니다.';
+				}else if(a.indicator==11&&b.indicator==12){//ㅇ ㅈ  인정 11,12
+					han +='인정.';
+				}else if(a.indicator==11&&b.indicator==2){//ㅇ ㄴ 안녕 11, 2
+					han += '안녕하세요.';
+				}else if(a.indicator==0&&b.indicator==14){//ㄱ ㅊ 괜찮 0, 14
+					han += '괜찮아요.';
+				}
+				$('p#singRecog').html(han); //test3에 글 찍기 
+				array=[];
+				ac = true;
+			}
+			}
+			
+		}
 		Leap.loop(controllerOptions, function(frame) {
 			if (paused) {
 				return; // Skip this update
@@ -83,11 +108,13 @@
 				for (var i = 0; i < frame.hands.length; i++) {
 					var hand = frame.hands[i];
 					handType = hand.type;
-			}
+				} 
 			// Store frame for motion functions
+			} else {
+				handType = "손 없음";
+			}
 			frameCopy = frame;
 			previousFrame = frame;
-			}
 			
 		})//loop
 	
@@ -108,8 +135,8 @@
 		$(function() {
 	
 			function assemble() {
-				//alert("assemble start!");
-	
+				acronym();
+				if(ac==false){
 				//쌍자음 구별하기 
 				var sftAlphabet = {
 					"division" : "1",
@@ -192,7 +219,8 @@
 					rss();
 				}
 				array=[];
-				
+				}
+				ac=false;
 			}// 글자 보이기 
 	
 			//조합된 글 목소리로! 
@@ -309,7 +337,9 @@
 						break;
 					case "swipe":
 						//alert("swipe!!");
-						assemble();
+						if (array.length>=2) {
+							assemble();
+						}
 						clearInterval(timeId);
 						timeId='';
 						break;
@@ -318,6 +348,8 @@
 				}//if leftHand
 				else {
 					$("#handType").text("손 없음");
+					clearInterval(timeId);
+					timeId='';
 				}
 			}//recog
 			
@@ -368,11 +400,9 @@ name="description">
 	
 	<!-- 우측 주요 기능 나오는 곳 -->
 	<div id="right_menu">
-		<span style="font-size:30px;cursor:pointer; color:white" class="nav_btn">☰ </span>
-		<div id="mySidenav" class="sidenav">
 			
-			
-			<label id="handType">수화 내용</label>
+			<!-- 주요기능 -->
+			<%-- <label id="handType">수화 내용</label>
 			<p id="singRecog">
 			</p>
 			
@@ -392,28 +422,11 @@ name="description">
 		            </select>
 		        </div>
 			<!-- speech script import -->
-			<script type="text/javascript" src="script/speech.js"></script>
-			<!-- speech Dom end -->	 
+			<script type="text/javascript" src="script/speech.js"></script> --%>
 			
 			
-		</div>
+			
 	</div>
-	<!-- 메뉴오픈 -->
-	<script>
-	$(function(){
-		$(".nav_btn").on("click", function(){
-			if ($('#mySidenav').css('display') == "none") {
-				$('#mySidenav').css('display', 'block');
-				$(".nav_btn").text("X");
-			}
-			else {
-				$('#mySidenav').css('display', 'none');
-				$(".nav_btn").text("☰");
-			}
-		});
-		
-	});
-	</script>
 </div><!-- wrapper -->
 
 </body>
