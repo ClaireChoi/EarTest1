@@ -16,7 +16,7 @@
     <script src="script/voicerss-tts.min.js"></script>
     
     <!-- leap motion -->
-	<script src="http://js.leapmotion.com/leap-0.6.3.min.js"></script>
+	<script src="https://js.leapmotion.com/leap-0.6.3.min.js"></script>
 	
 	<script>
 	
@@ -128,7 +128,6 @@
 					var b = array[i+1];
 					var c = array[i+2];
 					if((a.division==b.division&&a.division==c.division)){//쌍자음을 걸러낸 후에도 연속된 3개의 자음이 있으면 첫번 째 두번 째 자음을 합친 종성자음을 만든다. 
-						alert('2중 연속 자음');
 						ss=true;
 					doubIndex(a,b,i+1);
 					}			
