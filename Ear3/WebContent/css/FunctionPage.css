@@ -6,6 +6,10 @@ html {
 body {
   height: 100%;
   overflow: hidden;
+  margin:0;
+  padding:0;
+  background-color: black;
+  opacity: 0.9;
 }
 
 #wrapper{
@@ -33,7 +37,7 @@ body {
     min-width: 60px;
     height: 100%;
     min-height: inherit;
-    background-color: #0cf;
+    background-color: #7ec0fd;
 }
 
 .remote-video {
@@ -69,7 +73,7 @@ body {
     overflow: hidden;
     cursor: default;
     pointer-events: none;
-    background-color: #737373;
+    background-color: #7ec0fd;
 }
 
 .sidenav a {
