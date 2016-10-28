@@ -1,12 +1,11 @@
 @CHARSET "UTF-8";
 #results {
-	background: white;
+	background: transparent;
 	height: 40%;
 	width: 300px;
 	top: 55%;
     font-size: 20px;
     font-weight: bold;
-    padding: 15px;
     text-align: left;
     min-height: 150px; 
     }

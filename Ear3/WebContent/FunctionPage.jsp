@@ -384,9 +384,20 @@ name="description">
 
 <script>
 	$(function(){
+		var icon_click = 0;
+		
 		$('#icon1').on('click', function(){
-			$('#side1').css('display', 'block');	
+			if(icon_click == 0){
+				$('#side1').css('display', 'block');	
+				icon_click = 1;
+			}
+			else {
+				$('#side1').css('display', 'none');
+				icon_click = 0;
+			}
 		});
+		
+		
 		
 		
 	});
@@ -398,6 +409,8 @@ name="description">
 <body>
 <div id="wrapper">
 	
+	<form id="end_skype" action="end_skype.action">
+	</form>
 	<!-- 화상화면 나오는 곳 -->	
 	<div id="left_block">
 		<input type="text" id="createChannelId" value="<s:property value='channelId'/>" />
@@ -410,7 +423,7 @@ name="description">
 	
 	<!-- 우측 주요 기능 나오는 곳 -->
 	<div id="right_menu">
-		<span id="icon1" class="icon"><img src="img/icon1.png" /></span>
+		<span id="icon1" class="icon"><img src="img/icon11.png" /></span>
 		<span id="icon2" class="icon"><img src="img/icon2.png" /></span>
 		<span id="icon3" class="icon"><img src="img/icon3.png" /></span>
 		
