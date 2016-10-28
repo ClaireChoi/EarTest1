@@ -49,3 +49,20 @@ body {
 	background-repeat:no-repeat;
 	pointer-events:none;
 }
+
+#singRecog {
+	width: 240px;
+	font-size: 18px;
+	color: white;
+    font-weight: bold;	
+}
+
+#handType {
+	margin: 0 auto;
+	display: inline-block;
+	width: 240px;
+	text-align: center;
+	font-style: italic;	
+	color: white;
+    font-weight: bold;
+}

@@ -66,7 +66,7 @@ $(function(){
 	}
 	
 	//화면전환
-	$('#icon3').on('click', function(){
+	$('#navItem3').on('click', function(){
 		if (calling_type === '') {
 			if(window.confirm('통화를 종료하시겠습니까?')){
 			       appCallee.disconnectChannel(pid);

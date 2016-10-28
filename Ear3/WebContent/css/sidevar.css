@@ -7,7 +7,7 @@
 				[class*="entypo-"]:before {
 				  font-family: 'entypo', sans-serif;
 				  font-weight: normal;
-					font-style: normal;
+				  font-style: normal;
 				}
 				
 				/* ---------- FONTAWESOME ---------- */
@@ -172,6 +172,10 @@
 				
 				.icon-arrow-left:before {
 					content: "\f060";
+				}
+				
+				.fontawesome-comment:before {
+    				font-family: 'FontAwesome';
 				}
 				
 				.container > .breadcrumbs {
@@ -381,6 +385,7 @@
 				.slider-menu {
 				position: fixed;
 				background-color: #2d2e3c;
+				
 				background-image: -webkit-gradient(linear, left center, right center, from(#2d2e3c), to(#3c3d50));
 				background-image: -webkit-linear-gradient(left, #2d2e3c, #3c3d50);
 				background-image: -moz-linear-gradient(left, #2d2e3c, #3c3d50);
@@ -394,6 +399,7 @@
 				.slider-menu h3 {
 				color: #FFF;
 				font-size: 1.9em;
+				opacity: 1;
 				padding: 20px;
 				margin: 0;
 				font-weight: 300;
@@ -430,7 +436,7 @@
 				
 				.slider-menu a:active {
 					background: #afdefa;
-				  color: #FFF;
+				    color: #FFF;
 				}
 				
 				/* Orientation-dependent styles for the content of the menu */
@@ -440,6 +446,7 @@
 					height: 100%;
 					top: 0;
 					z-index: 1000;
+					opacity: 0.8;
 				}
 				
 				.slider-menu-vertical a {
