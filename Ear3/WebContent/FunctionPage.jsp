@@ -49,55 +49,7 @@
 		var handType="";
 		var timeId=''; 
 		
-		//이중자음 조합
-		function doubIndex(a, b, i){
-			if(a.indicator==0  &&b.indicator==9  ){//ㄳ0,9
-					a.indicator= 2;
-			}else if(a.indicator==2 &&b.indicator==12){//ㄵ 2,12
-				a.indicator= 4;
-			}else if(a.indicator==2 &&b.indicator==18){//ㄶ 2,18
-				a.indicator= 5;
-			}else if(a.indicator==5 &&b.indicator==0){//ㄺ 5,0
-				a.indicator= 8;
-			}else if(a.indicator==5 &&b.indicator==6){//ㄻ 5,6
-				a.indicator=9 ;
-			}else if(a.indicator==5 &&b.indicator==7){//ㄼ 5,7
-				a.indicator= 10;
-			}else if(a.indicator==5  &&b.indicator==18  ){//ㅀ 5,18
-				a.indicator= 14;
-			}else if(a.indicator== 7 &&b.indicator== 9 ){//ㅄ 7,9
-				a.indicator=17 ;
-			}
-				$.extend(a,{"jj":"0"});
-				array.splice(i,1);
-		}	
 		
-		//줄임말
-		function acronym(){
-			if(array.length==2){
-			var a =	array[0];
-			var b =	array[1];
-			if(a.chj==1&&b.chj==1){
-				if(a.indicator==0&&b.indicator==9){//ㄱ ㅅ 감사 0,9
-					han += '감사합니다.';	
-				}else if(a.indicator==5&&b.indicator==11){//ㄹ ㅇ 레알 5,11
-					han += '레알.';
-				}else if(a.indicator==12&&b.indicator==9){//ㅈ ㅅ 죄송 12,9
-					han += '죄송합니다.';
-				}else if(a.indicator==11&&b.indicator==12){//ㅇ ㅈ  인정 11,12
-					han +='인정.';
-				}else if(a.indicator==11&&b.indicator==2){//ㅇ ㄴ 안녕 11, 2
-					han += '안녕하세요.';
-				}else if(a.indicator==0&&b.indicator==14){//ㄱ ㅊ 괜찮 0, 14
-					han += '괜찮아요.';
-				}
-				$('p#singRecog').html(han); //test3에 글 찍기 
-				array=[];
-				ac = true;
-			}
-			}
-			
-		}
 		Leap.loop(controllerOptions, function(frame) {
 			if (paused) {
 				return; // Skip this update
@@ -133,7 +85,57 @@
 	
 	
 		$(function() {
-	
+			//이중자음 조합
+			function doubIndex(a, b, i){
+				if(a.indicator==0  &&b.indicator==9  ){//ㄳ0,9
+						a.indicator= 2;
+				}else if(a.indicator==2 &&b.indicator==12){//ㄵ 2,12
+					a.indicator= 4;
+				}else if(a.indicator==2 &&b.indicator==18){//ㄶ 2,18
+					a.indicator= 5;
+				}else if(a.indicator==5 &&b.indicator==0){//ㄺ 5,0
+					a.indicator= 8;
+				}else if(a.indicator==5 &&b.indicator==6){//ㄻ 5,6
+					a.indicator=9 ;
+				}else if(a.indicator==5 &&b.indicator==7){//ㄼ 5,7
+					a.indicator= 10;
+				}else if(a.indicator==5  &&b.indicator==18  ){//ㅀ 5,18
+					a.indicator= 14;
+				}else if(a.indicator== 7 &&b.indicator== 9 ){//ㅄ 7,9
+					a.indicator=17 ;
+				}
+					$.extend(a,{"jj":"0"});
+					array.splice(i,1);
+			}	
+			
+			//줄임말
+			function acronym(){
+				if(array.length==2){
+					var a =	array[0];
+					var b =	array[1];
+					if(a.division==1&&b.division==1){
+						if(a.indicator==0&&b.indicator==9){//ㄱ ㅅ 감사 0,9
+							han = '감사합니다.';	
+						}else if(a.indicator==5&&b.indicator==11){//ㄹ ㅇ 레알 5,11
+							han = '레알.';
+						}else if(a.indicator==12&&b.indicator==9){//ㅈ ㅅ 죄송 12,9
+							han = '죄송합니다.';
+						}else if(a.indicator==11&&b.indicator==12){//ㅇ ㅈ  인정 11,12
+							han ='인정.';
+						}else if(a.indicator==11&&b.indicator==2){//ㅇ ㄴ 안녕 11, 2
+							han = '안녕하세요.';
+						}else if(a.indicator==0&&b.indicator==14){//ㄱ ㅊ 괜찮 0, 14
+							han = '괜찮아요.';
+						}
+						$('p#singRecog').html(han); //test3에 글 찍기 
+						rss();
+						array=[];
+						ac = true;
+					}
+				}
+			}
+
+			//자모음 조합
 			function assemble() {
 				acronym();
 				if(ac==false){
@@ -186,7 +188,6 @@
 					array.push(alphabet);
 				}
 				
-				//alert(array.length);
 				
 				// 글 조합
 				$.each(array, function(index, item) {
@@ -319,12 +320,10 @@
 					    for (var i = 0; i < frameCopy.gestures.length; i++) {
 					      var gesture = frameCopy.gestures[i];
 					 		gestureType = gesture.type;
-							//alert(gesture.type);
 					 }
 					}
 					switch (gestureType) {
 					case "circle":
-						//alert("circle!!");
 						/* 
 							오타 삭제 내용;
 						 */
@@ -336,12 +335,17 @@
 						timeId='';
 						break;
 					case "swipe":
-						//alert("swipe!!");
-						if (array.length>=2) {
-							assemble();
-						}
-						clearInterval(timeId);
-						timeId='';
+						if (array.length>=3) {
+							var endDivision = array[array.length-1].division;
+							if (endDivision==3) {
+								array.pop();
+								if (array.length>=2) {
+									assemble();
+									clearInterval(timeId);
+									timeId='';
+								}//if
+							}//if
+						}//if
 						break;
 					}//switch */
 	
