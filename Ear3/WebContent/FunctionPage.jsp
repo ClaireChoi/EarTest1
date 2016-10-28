@@ -8,9 +8,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/FunctionPage.css">
 <link rel="stylesheet" href="css/speech.css">
+<link rel="stylesheet" href="css/sidevar.css">
 <script src="script/jquery-3.1.0.min.js"></script>
     <script src="script/playrtc.min.js"></script>
     <script src="script/functionCustom.js"></script>
+    <script src="script/nav.js"></script>
     
     <!-- text to voice -->
     <script src="script/voicerss-tts.min.js"></script>
@@ -407,7 +409,28 @@ name="description">
 	});
 </script>
 <!-- speech script end -->
-    
+
+
+
+<!-- Side Nav에 들어갈 내용 -->
+<%-- <label id="handType">수화 내용</label>
+	<p id="singRecog"></p>
+			
+	<div class="compact marquee-stacked" id="marquee">
+	      <div class="marquee-copy"></div>
+	      </div>
+	   
+	      <div id="results">
+	      <span class="final" id="final_span"></span> <span class="interim" id="interim_span"></span>
+	</div>
+
+	<div class="compact marquee" id="div_language">
+	<select id="select_language" onchange="updateCountry()"></select>&nbsp;&nbsp; 
+	<select id="select_dialect"></select>
+	</div>
+
+	<!-- speech script import -->
+	<script type="text/javascript" src="script/speech.js"></script> --%>
     
 </head>
 <body>
@@ -425,35 +448,92 @@ name="description">
 		<video class="local-video pull-right" id="calleeLocalVideo"></video>
 	</div>
 	
+	
+	
+	
 	<!-- 우측 주요 기능 나오는 곳 -->
-	<div id="right_menu">
-		<span id="icon1" class="icon"><img src="img/icon11.png" /></span>
-		<span id="icon2" class="icon"><img src="img/icon2.png" /></span>
-		<span id="icon3" class="icon"><img src="img/icon3.png" /></span>
-		
-		<div id="side1">
-			<label id="handType">수화 내용</label>
-			<p id="singRecog"></p>
+	<div class="container">
+        <div class="breadcrumbs">
+			<ul class="social"></ul>
+		</div>
 			
-			<div class="compact marquee-stacked" id="marquee">
-		         <div class="marquee-copy"></div>
-		        </div>
-			    
-		        <div id="results">
-		          <span class="final" id="final_span"></span> <span class="interim" id=
-		          "interim_span"></span>
-		        </div>
-		
-		        <div class="compact marquee" id="div_language">
-		          <select id="select_language" onchange="updateCountry()">
-		            </select>&nbsp;&nbsp; <select id="select_dialect">
-		            </select>
-		        </div>
-			<!-- speech script import -->
-			<script type="text/javascript" src="script/speech.js"></script>
-		</div>	
+			<ul class="tl-menu">
+				<li><a href="#" class="icon-logo">Logo</a></li>
+				<li><a href="#" class="fontawesome-comment" id="navItem1">Option 1</a></li>
+				<li><a href="#" class="icon-chart" id="navItem2">Option 2</a></li>
+				<li><a href="#" class="entypo-camera" id="navItem3">Option 3</a></li>
+				<li class="tl-current">
+          		<a href="#" class="icon-download" id="navItem4">Active</a></li>
+				<li><a href="#" class="icon-flag" id="navItem5">Option 4</a></li>
+				<li><a href="#" class="icon-lamp" id="navItem6">Option 5</a></li>
+				<li><a href="#" class="icon-file" id="navItem7">Option 6</a></li>
+			</ul>
 			
+		<!--Slider Nav 1-->
+        <nav class="slider-menu slider-menu-vertical slider-menu-left" id="slider-menu-s1">
+			    <h3>MENU</h3>
+		</nav>
+
 	</div>
+	<script>
+			var menuLeft = document.getElementById( 'slider-menu-s1' ),
+				showLeft = document.getElementById( 'showLeft' ),
+				body = document.body;
+
+			navItem1.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( menuLeft, 'slider-menu-open' );
+				disableOther( 'navItem1' );
+			};
+      
+			navItem2.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( menuLeft, 'slider-menu-open' );
+				disableOther( 'navItem2' );
+			};
+      
+     		navItem3.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( menuLeft, 'slider-menu-open' );
+				disableOther( 'navItem3' );
+			};
+      
+      		navItem4.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( menuLeft, 'slider-menu-open' );
+				disableOther( 'navItem4' );
+			};
+      
+			navItem5.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( menuLeft, 'slider-menu-open' );
+				disableOther( 'navItem5' );
+			};
+      
+      		navItem6.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( menuLeft, 'slider-menu-open' );
+				disableOther( 'navItem6' );
+			};
+      
+      		navItem7.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( menuLeft, 'slider-menu-open' );
+				disableOther( 'navItem7' );
+			};
+
+			function disableOther( button ) {
+				if( button !== 'showLeft' ) {
+					classie.toggle( showLeft, 'disabled' );
+				}
+			}
+	</script>
+	
+	
+	
+	<!--  -->
+
+
 </div><!-- wrapper -->
 
 </body>
