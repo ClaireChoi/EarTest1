@@ -358,6 +358,7 @@
 			}//recog
 			
 		});
+		
 </script>
 
 <!-- speech script start -->
