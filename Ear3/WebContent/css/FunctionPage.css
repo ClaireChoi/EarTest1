@@ -66,3 +66,17 @@ body {
 	color: white;
     font-weight: bold;
 }
+
+#createChannelId {
+	display: inline-block;
+	position: absolute;
+	left: 43%;
+	top: 2%;	
+	z-index: 9999;
+	text-align: center;
+	width: 180px;
+	height: 25px;
+	background-color: #47a3da;
+	color: white;
+	border-radius: 30px;
+}

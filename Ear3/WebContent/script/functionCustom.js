@@ -19,7 +19,7 @@ $(function(){
 		appCaller.createChannel();
 		
 		appCaller.on('connectChannel', function(chId) {
-	    	alert('create : ' + chId);
+	    	$('span#createChannelId').text(chId);
 	    	document.getElementById('createChannelId').value=chId;
 		});
 
