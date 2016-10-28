@@ -356,7 +356,6 @@
 					timeId='';
 				}
 			}//recog
-			
 		});
 		
 </script>
