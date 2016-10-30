@@ -6,6 +6,9 @@ $(function(){
 	var pid = '';
 	var calling_type = '';
 	
+	
+	alert(chId);
+	
 	if(chId === ''){
 		var appCaller;
 
@@ -19,7 +22,7 @@ $(function(){
 		appCaller.createChannel();
 		
 		appCaller.on('connectChannel', function(chId) {
-	    	alert('create : ' + chId);
+	    	$('span#viewingId').text(chId);
 	    	document.getElementById('createChannelId').value=chId;
 		});
 
@@ -66,7 +69,7 @@ $(function(){
 	}
 	
 	//화면전환
-	$('#icon3').on('click', function(){
+	$('#navItem3').on('click', function(){
 		if (calling_type === '') {
 			if(window.confirm('통화를 종료하시겠습니까?')){
 			       appCallee.disconnectChannel(pid);

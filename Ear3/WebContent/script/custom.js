@@ -15,7 +15,6 @@ $(function(){
 			chId =  $('#createChannelId').val();
 			
 			if(chId != ''){
-				alert('ddd');
 				var appCallee;
 				
 				appCallee = new PlayRTC({

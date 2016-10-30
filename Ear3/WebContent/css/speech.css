@@ -2,9 +2,9 @@
 #results {
 	background: transparent;
 	height: 40%;
-	width: 300px;
-	top: 55%;
-    font-size: 20px;
+	width: 240px;
+	margin-top: 300px;
+    font-size: 18px;
     font-weight: bold;
     text-align: left;
     min-height: 150px; 
@@ -13,7 +13,8 @@
     color: gray;
     }
 .final {
-    color: black;
+    color: white;
+    font-weight: bold;
     padding-right: 3px;
     }
 .marquee {

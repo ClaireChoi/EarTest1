@@ -89,6 +89,7 @@ input#createChannelId {
 	font-family: 'Jeju Gothic';
     width: 100%;
     padding: 4%;
+    color: black;
 }
 /* page2 - 립모션사용자/일반사용자 선택 부분 */
 #page111_title{
