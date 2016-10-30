@@ -55,7 +55,8 @@ $(function(){
 	      ring: true
 	    });
 
-	    appCallee.connectChannel(chId);
+	    appCallee.connectChannel(chId); 
+	    $('span#viewingId').text(chId);
 	    
 	    appCallee.on('ring', function(pid, uid) {
 	    	this.pid = pid;
@@ -65,6 +66,8 @@ $(function(){
 	        appCallee.reject(pid);
 	    	}
 	    });
+	    
+	    
 	    
 	}
 	
