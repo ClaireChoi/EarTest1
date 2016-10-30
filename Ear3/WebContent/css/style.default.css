@@ -91,213 +91,24 @@ input#createChannelId {
     padding: 4%;
     color: black;
 }
-/* page2 - 립모션사용자/일반사용자 선택 부분 */
-#page111_title{
-	position : relative;
-	z-index :50;
-	text-align: center;
-	color: white;
+#page2{
+	background: url("../img/1test7.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
-#overlay_left {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 1;
- /*  background: url('../img/left.gif'); */
- 	background : #444;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100.5%;
-} 
-#overoverlay_left{
-	  position: absolute;
-  width: 50%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index:45;
-  background-color: black;
-  opacity: 0.3;
+#page3{
+	background: url("../img/2test11.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
-#left_bg{
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  left: 0;
-  top: 10%;
-  z-index:50;
-  color: white;
-  font-family: 'Jeju Gothic', sans-serif;
- /*  background-color: black;
-  opacity: 0.3; */
-
+#page4{
+	background: url("../img/4test3.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
-#manual{
-	display: none;
-}
-#goto_next_pg{
-	display: none;
-}
-
-
-#overlay_right {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  left: 50%;
-  top: 0;
-  z-index: 1;
-	background : #444;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100.5%;
-}
-#overoverlay_right{
-	  position: absolute;
-  width: 50%;
-  height: 100%;
-  left: 50%;
-  top: 0;
-  z-index:45;
-  background-color: black;
-  opacity: 0.3;
-}
-#right_bg{
-	padding: 10px;
-	position: absolute;
-  width: 50%;
-  height: 100%;
-  left: 50%;
-  top: 10%;
-  z-index:50;
-  color:white;
-  font-family: 'Jeju Gothic', sans-serif;
-}
-img#checkbox_leapmotion{
-	cursor: pointer;
-	width :10%;
-	height : 10%;
-	z-index : 4;
-}
-/* #page111_footer{
-	position: relative;
-	text-align: center;
-	z-index : 4;
-	height: 40px;
-    width: 1000px;
-    clear: both;
-	
-} */
-/* img#down_arrow{
-	width:5%;
-} */
-
-/* #page111 {
-  text-align: center;
-  background: url('../img/sign.gif') center center no-repeat;
-  background-size: 120%;
-  color: #fff;
-} */
-/* ========================== */
-/* page3 - 통화페이지 */
-
-@import url("../css/reset.css");
-#page1111_wrapper {
-    width: 100%;
-    height: 100%;
-    min-width: 0px;
-    max-width: 2000px;
-    margin: 0 auto;
-    background-color:#444; 
-}
-
-#contentliquid {
-    float: left;
-    width: 100%;
-}
-
-#content {
-    background: #444;
-    margin-left: 200px;
-}
-
-#leftcolumn {
-    background: #444;
-    width: 200px;
-    height : 1000px;
-    float: left;
-    margin-left:-100%;
-    padding : 30px 0;
-}
-#page1111_channel{
-	color: white;
-}
-
-#page1111_channel{
-	margin: 15px;
-}
-
-#rightcolumn {
-    background: #444;
-    width: 27%;
-    height: 100%;
-    float: left;
-    margin-left: 55%;
-    color: white;
-    padding : 10px;
-}
-#disconnectChannel_caller{
-	display: none;
-}
-#disconnectChannel_callee{
-	display: none;
-}
-input#reset_btn{
-	display: none;
-}
-#rightcolumn_result{
-	background: pink;
-	height: 40%;
-	position: relative;
-	top: 48%;
-	margin-left: -2px;
-	color : black;
-}
-#callerLocalVideo {
-  width: 400px;
-  height: 300px;
-  z-index: 10;
-  position: relative;
-  top: 5.5%;
-  /* position: absolute;
-  top: 	570px;
-  left : 890px; */
-}
-#callerRemoteVideo{
-  width: 800px;
-  height: 600px;
-  position: absolute;
-  top : 70px;
-  left : 220px;
-}
-#calleeLocalVideo{
-  width: 400px;
-  height: 300px;
-  z-index: 10;
-  /* position: absolute;
-  top: 	570px;
-  left : 890px; */
-}
-#calleeRemoteVideo{
-  width: 800px;
-  height: 600px;
-  position: absolute;
-  top : 70px;
-  left : 220px;
-}
-/* ========================== */
 .heading {
   text-align: center;
   margin-bottom: 40px;
