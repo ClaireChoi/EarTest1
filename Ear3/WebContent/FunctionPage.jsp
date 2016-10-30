@@ -167,6 +167,8 @@
 					}
 				}			
 				//그외의 종성들과 초성이 3개로 겹칠 때 
+			var len = array.length;
+			if(len>2){
 				for(var i = 0;i<array.length-2 ; i++){
 					var a = array[i];
 					var b = array[i+1];
@@ -178,13 +180,12 @@
 				}
 				
 				//마지막이 이중자음일 때 
-				var len = array.length;
 				var a = array[len-2];
 				var b = array[len-1];
 				if(a.division==b.division){
 					doubIndex(a,b,len-1);
 				}
-				
+			}
 				//종성 넣기 - 마침표 액션 들어오면 실행
 				var alphabet = {
 					"division" : "0",
