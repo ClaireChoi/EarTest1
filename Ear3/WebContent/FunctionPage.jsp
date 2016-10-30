@@ -151,7 +151,20 @@
 						array[i+1].indicator++; //쌍자음용 자음 (ㄱ,ㅅ,ㄷ,ㅈ,ㅂ) +1 하면 쌍자음의 인덱스
 						array.splice(i,1); //sht 신호와 단자음 객체를 빼고 쌍자음의 indicator를 가진 sftAlphabet 객체를 추가
 					}
-					
+					if(i<(array.length-1)&&array[i].division==0&&array[i+1].division==0){ //2 중 모음 거르기 
+						var mo1 = array[i].indicator;
+						var mo2 = array[i+1].indicator;
+						if(mo1==8&&mo2==0){       //ㅗ ㅏ > ㅘ 
+							array[i].indicator = 9;
+						}else if(mo1==8&&mo2==1){ //ㅗ ㅐ > ㅙ
+							array[i].indicator = 10;
+						}else if(mo1==13&&mo2==4){ // ㅜ ㅓ > ㅝ
+							array[i].indicator = 14;
+						}else if(mo1==13&&mo2==5){ // ㅜ ㅔ > ㅞ 
+							array[i].indicator = 15;
+						}
+						array.splice(i+1,1);
+					}
 				}			
 				//그외의 종성들과 초성이 3개로 겹칠 때 
 				for(var i = 0;i<array.length-2 ; i++){
