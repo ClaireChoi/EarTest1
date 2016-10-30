@@ -422,7 +422,8 @@ name="description">
 	</form>
 	<!-- 화상화면 나오는 곳 -->	
 	<div id="left_block">
-		<span id="createChannelId"><s:property value='channelId'/></span>
+		<s:textfield id="createChannelId" name="channelId" />
+      	<span id="viewingId"></span>
 		<video class="remote-video center-block" id="callerRemoteVideo"></video>
 		<video class="remote-video center-block" id="calleeRemoteVideo"></video>
 		

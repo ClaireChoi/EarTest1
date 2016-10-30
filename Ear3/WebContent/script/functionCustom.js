@@ -6,6 +6,9 @@ $(function(){
 	var pid = '';
 	var calling_type = '';
 	
+	
+	alert(chId);
+	
 	if(chId === ''){
 		var appCaller;
 
@@ -19,7 +22,7 @@ $(function(){
 		appCaller.createChannel();
 		
 		appCaller.on('connectChannel', function(chId) {
-	    	$('span#createChannelId').text(chId);
+	    	$('span#viewingId').text(chId);
 	    	document.getElementById('createChannelId').value=chId;
 		});
 
