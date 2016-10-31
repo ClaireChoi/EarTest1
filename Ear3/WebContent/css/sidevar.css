@@ -143,6 +143,10 @@
 				  
 				}
 				
+				#howToUse{
+					padding: 90px 0;
+				}
+				
 				.icon-drop:before, 
 				.icon-arrow-left:before {
 					font-family: 'FontAwesome';

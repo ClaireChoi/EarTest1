@@ -493,9 +493,9 @@ name="description">
 		
 		<!--Slider Nav 2-->
         <nav class="slider-menu slider-menu-vertical slider-menu-left" id="slider-menu-s2">
-			    <h3><!-- <img src="img/howToText.png"/> -->사용법</h3>
+			    <h3>사용법</h3>
 			    
-				<div>
+				<div id="howToUse">
 					<img src="img/howToUse1.png"/>
 				</div>  
 				

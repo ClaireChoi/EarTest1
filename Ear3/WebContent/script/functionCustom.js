@@ -7,8 +7,6 @@ $(function(){
 	var calling_type = '';
 	
 	
-	alert(chId);
-	
 	if(chId === ''){
 		var appCaller;
 
@@ -27,7 +25,7 @@ $(function(){
 		});
 
 	    appCaller.on('ring', function(pid, uid) {
-	      if (window.confirm('Would you like to get a call?')) {
+	      if (window.confirm('상대방과 연결하시겠습니까?')) {
 	        appCaller.accept(pid);
 	      } else {
 	        appCaller.reject(pid);
@@ -35,11 +33,11 @@ $(function(){
 	    });
 
 	    appCaller.on('accept', function() {
-	      alert('Peer get your connect.');
+	      alert('상대방과 연결되었습니다.');
 	    });
 
 	    appCaller.on('reject', function() {
-	      alert('Peer turn down your connect.');
+	      alert('상대방이 통화를 거절하였습니다.');
 	    });
 	    
 	    calling_type = 'caller';
@@ -60,7 +58,7 @@ $(function(){
 	    
 	    appCallee.on('ring', function(pid, uid) {
 	    	this.pid = pid;
-	    	if (window.confirm('callee : Would you like to get a call?')) {
+	    	if (window.confirm('상대방과 연결하시겠습니까?')) {
 	    		appCallee.accept(pid);
 	    	} else {
 	        appCallee.reject(pid);
