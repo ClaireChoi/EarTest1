@@ -120,6 +120,8 @@ input#createChannelId {
 }
 img#content1{
 	margin: auto;
+	height: 75%;
+	
 }
 #page3{
 	background: url("../img/2bg2.jpg");
@@ -131,6 +133,7 @@ img#content1{
 }
 img#content2{
 	margin: auto;
+	height: 80%;
 }
 #page4{
 	background: url("../img/4test3.jpg");
