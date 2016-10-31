@@ -455,10 +455,10 @@ name="description">
 		</div>
 			
 			<ul class="tl-menu">
-				<li><a href="#" class="icon-logo">Logo</a></li>
-				<li><a href="#" class="entypo-chat" id="navItem1">Option 1</a></li>
-				<li><a href="#" class="icon-lamp" id="navItem2">Option 2</a></li>
-				<li><a href="#" class="entypo-logout" id="navItem3">Option 3</a></li>
+				<li><a href="#" class="nav0">Logo</a></li>
+				<li><a href="#" class="nav1" id="navItem1">Option 1</a></li>
+				<li><a href="#" class="nav2" id="navItem2">Option 2</a></li>
+				<li><a href="#" class="nav3" id="navItem3">Option 3</a></li>
 				<!-- <li><a href="#" class="icon-chart" id="navItem6">Option 2</a></li>
 				<li class="tl-current">
           		<a href="#" class="icon-download" id="navItem4">Active</a></li>
