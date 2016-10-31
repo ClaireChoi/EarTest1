@@ -469,7 +469,7 @@ name="description">
 			
 		<!--Slider Nav 1-->
         <nav class="slider-menu slider-menu-vertical slider-menu-left" id="slider-menu-s1">
-			    <h3>LeapMotion</h3>
+			    <h3>수화통역</h3>
 			    
 			    <span id="handType">수화 내용</span>
 				<p id="singRecog"></p>
@@ -490,10 +490,21 @@ name="description">
 				<!-- speech script import -->
 				<script type="text/javascript" src="script/speech.js"></script>
 		</nav>
-
+		
+		<!--Slider Nav 2-->
+        <nav class="slider-menu slider-menu-vertical slider-menu-left" id="slider-menu-s2">
+			    <h3><!-- <img src="img/howToText.png"/> -->사용법</h3>
+			    
+				<div>
+					<img src="img/howToUse1.png"/>
+				</div>  
+				
+		</nav>
+		
 	</div>
 	<script>
 			var menuLeft = document.getElementById( 'slider-menu-s1' ),
+				menuLeft1 = document.getElementById('slider-menu-s2'),
 				showLeft = document.getElementById( 'showLeft' ),
 				body = document.body;
 
@@ -505,7 +516,7 @@ name="description">
       
 			navItem2.onclick = function() {
 				classie.toggle( this, 'active' );
-				classie.toggle( menuLeft, 'slider-menu-open' );
+				classie.toggle( menuLeft1, 'slider-menu-open' );
 				disableOther( 'navItem2' );
 			};
 
