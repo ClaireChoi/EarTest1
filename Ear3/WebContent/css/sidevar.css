@@ -143,10 +143,6 @@
 				  
 				}
 				
-				#howToUse{
-					padding: 90px 0;
-				}
-				
 				.icon-drop:before, 
 				.icon-arrow-left:before {
 					font-family: 'FontAwesome';
@@ -264,6 +260,30 @@
 				.tl-menu li.tl-current a {
 					background: #343a47;
 					color: #bbe6fe;
+				}
+				.nav0{
+					background: url("../img/code.png");
+					background-size: 50%;
+					background-repeat: no-repeat;
+					background-position: center;
+				}
+				.nav1{
+					background: url("../img/comment.png");
+					background-size: 35%;
+					background-repeat: no-repeat;
+					background-position: center;
+				}
+				.nav2{
+					background: url("../img/lamp.png");
+					background-size: 27%;
+					background-repeat: no-repeat;
+					background-position: center;
+				}
+				.nav3{
+					background: url("../img/logout.png");
+					background-size: 35%;
+					background-repeat: no-repeat;
+					background-position: center;
 				}
 				
 				.tl-menu li a:before {

@@ -111,16 +111,26 @@ input#createChannelId {
 	outline: 0;
 }
 #page2{
-	background: url("../img/1test8.jpg");
+	background: url("../img/1bg1.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	text-align: center;
+	display: flex;
+}
+img#content1{
+	margin: auto;
 }
 #page3{
-	background: url("../img/2test11.jpg");
+	background: url("../img/2bg2.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	text-align: center;
+	display: flex;
+}
+img#content2{
+	margin: auto;
 }
 #page4{
 	background: url("../img/4test3.jpg");
