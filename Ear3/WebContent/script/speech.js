@@ -23,7 +23,7 @@ var start_timestamp;
 if (!('webkitSpeechRecognition' in window)) {
   upgrade();
 } else {
-	 
+    
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
   recognition.interimResults = true;
@@ -56,18 +56,20 @@ if (!('webkitSpeechRecognition' in window)) {
       recognition.onend = null;
       recognition.stop();
       upgrade();
+      recognition.start();
       return;
     }
-    for (var i = event.resultIndex; i < event.results.length; i++) {
-      if (event.results[i].isFinal) {
-        final_transcript = event.results[i][0].transcript;
-      } else {
-        interim_transcript = event.results[i][0].transcript;
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+          final_transcript += event.results[i][0].transcript;
+        } else {
+          interim_transcript += event.results[i][0].transcript;
+        }
       }
-    }
     final_transcript = capitalize(final_transcript);
     final_span.innerHTML = linebreak(final_transcript);
     interim_span.innerHTML = linebreak(interim_transcript);
+    
     if (final_transcript || interim_transcript) {
       showButtons('inline-block');
     }
@@ -109,16 +111,16 @@ function showButtons(style) {
 }
 ////////////////////상직
 $(function(){
-	var pre_contents = "";
-	startButton(event);
-	setInterval(function(){
-		var contents = $('span#final_span').text();
-		if (pre_contents == contents) {
-			$('span#final_span').text("");
-		}
-		else {
-			pre_contents = contents;
-		}
-	}, 5000);
-
+   var pre_contents = "";
+   startButton(event);
+/*   setInterval(function(){
+      var contents = $('span#final_span').text();
+      if (pre_contents == contents) {
+         $('span#final_span').text("");
+      }
+      else {
+         pre_contents = contents;
+      }
+   }, 5000);
+*/
 });
