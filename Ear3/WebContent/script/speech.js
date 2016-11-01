@@ -20,71 +20,14 @@ var final_transcript = '';
 var recognizing = false;
 var ignore_onend;
 var start_timestamp;
+var recognition;
 if (!('webkitSpeechRecognition' in window)) {
   upgrade();
 } else {
     
-  var recognition = new webkitSpeechRecognition();
-  recognition.continuous = true;
-  recognition.interimResults = true;
+	createRecog();
+	settingRecog();
 
-  recognition.onstart = function() {
-    recognizing = true;
-  }; 
-
-  recognition.onend = function() {
-	alert("onend!");
-    //recognizing = false;
-    if (ignore_onend) {
-    	alert("ignore: " + ignore_onend);
-      return;
-    }
-
-    if (!final_transcript) {
-    	alert("script: " + !final_transcript);
-      return;
-    }
-    startButton(event);
-    return;
-    //startButton(event);
-    /*if (window.getSelection) {
-      alert("getSelection");*/
-      /*window.getSelection().removeAllRanges();
-      var range = document.createRange();
-      range.selectNode(document.getElementById('final_span'));
-      window.getSelection().addRange(range);
-    }*/
-  };
-
-  recognition.onresult = function(event) {
-    var interim_transcript = '';
-    //alert(event);
-    if (typeof(event.results) == 'undefined') {
-      recognition.onend = null;
-      alert("stop");
-      recognition.stop();
-      upgrade();
-      recognition.start();
-      alert("strated");
-      return;
-    }
-    for (var i = event.resultIndex; i < event.results.length; ++i) {
-        if (event.results[i].isFinal) {
-          final_transcript += event.results[i][0].transcript;
-        } else {
-          interim_transcript += event.results[i][0].transcript;
-        }
-      }
-    final_transcript = capitalize(final_transcript);
-    final_span.innerHTML = linebreak(final_transcript);
-    interim_span.innerHTML = linebreak(interim_transcript);
-    
-    
-    
-    if (final_transcript || interim_transcript) {
-      showButtons('inline-block');
-    }
-  };
 }
 
 var two_line = /\n\n/g;
@@ -120,6 +63,68 @@ function showButtons(style) {
   }
   current_style = style;
 }
+
+function createRecog() {
+	recognition = new webkitSpeechRecognition();
+	  recognition.continuous = true;
+	  recognition.interimResults = true;
+}//create Recog();
+
+function settingRecog(){
+	recognition.onstart = function() {
+	    recognizing = true;
+	  }; 
+
+	  recognition.onend = function() {
+		//alert("onend!");
+	    //recognizing = false;
+		/*if (ignore_onend) {
+	    	alert("ignore: " + ignore_onend);
+	      return;
+	    }
+
+	    if (!final_transcript) {
+	    	alert("script: " + !final_transcript);
+	      return;
+	    }*/
+	    createRecog();
+	    settingRecog();  
+	    startButton(event);
+	    final_span.innerHTML="onend";
+	    return;
+	  };
+
+	  recognition.onresult = function(event) {
+	    var interim_transcript = '';
+	    if (typeof(event.results) == 'undefined') {
+	      recognition.onend = null;
+	      alert("stop");
+	      recognition.stop();
+	      upgrade();
+	      recognition.start();
+	      alert("strated");
+	      return;
+	    }
+	    for (var i = event.resultIndex; i < event.results.length; ++i) {
+	        if (event.results[i].isFinal) {
+	          final_transcript += event.results[i][0].transcript;
+	        } else {
+	          interim_transcript += event.results[i][0].transcript;
+	        }
+	      }
+	    final_transcript = capitalize(final_transcript);
+	    final_span.innerHTML = linebreak(final_transcript);
+	    interim_span.innerHTML = linebreak(interim_transcript);
+	    
+	    if (final_transcript || interim_transcript) {
+	      showButtons('inline-block');
+	    }
+	  };
+}//setting Recog
+
+
+
+
 ////////////////////상직
 $(function(){
    var pre_contents = "";
