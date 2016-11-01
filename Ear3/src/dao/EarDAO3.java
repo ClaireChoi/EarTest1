@@ -27,6 +27,7 @@ public class EarDAO3 {
 		}*/
 		//System.out.println("///////////////////////////////////");
 		
+		sqlSesstion.close();
 		
 		if (resultList.size()>1) {
 			for (FingerData x : resultList) {
@@ -43,7 +44,6 @@ public class EarDAO3 {
 			}
 		}//if size first
 
-		sqlSesstion.close();
 
 		if (resultList.size()==1) {
 			return resultList.get(0);

@@ -66,7 +66,7 @@ public class RecoAction2 extends ActionSupport implements SessionAware{
 					Alphabet value = (Alphabet) session.get("value");
 					if (value.getLetter().equals(alphabet.getLetter())) {
 						int cnt  = (int) session.get("cnt");
-						if (cnt>2) {
+						if (cnt>1) {
 							session.put("cnt", 0);
 							return SUCCESS;
 						} else {
@@ -78,7 +78,7 @@ public class RecoAction2 extends ActionSupport implements SessionAware{
 					}//equal letter
 				}//containsKey
 				session.put("value", alphabet);
-				session.put("cnt", 1);
+				session.put("cnt", 0);
 				alphabet=null;
 			}//alphabet != null
 		}
