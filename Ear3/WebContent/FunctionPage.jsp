@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>E:ar</title>
 <link rel="stylesheet" href="css/FunctionPage.css">
 <link rel="stylesheet" href="css/speech.css">
 <link rel="stylesheet" href="css/sidevar.css">

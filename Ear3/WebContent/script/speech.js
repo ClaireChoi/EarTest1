@@ -111,7 +111,7 @@ function showButtons(style) {
 $(function(){
 	var pre_contents = "";
 	startButton(event);
-	setInterval(function(){
+	/*setInterval(function(){
 		var contents = $('span#final_span').text();
 		if (pre_contents == contents) {
 			$('span#final_span').text("");
@@ -119,6 +119,6 @@ $(function(){
 		else {
 			pre_contents = contents;
 		}
-	}, 5000);
+	}, 5000);*/
 
 });
