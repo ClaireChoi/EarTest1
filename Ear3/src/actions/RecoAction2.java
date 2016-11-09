@@ -68,6 +68,7 @@ public class RecoAction2 extends ActionSupport implements SessionAware{
 						int cnt  = (int) session.get("cnt");
 						if (cnt>1) {
 							session.put("cnt", 0);
+							session.remove("value");
 							return SUCCESS;
 						} else {
 							cnt++;

@@ -90,7 +90,7 @@ function settingRecog(){
 	    createRecog();
 	    settingRecog();  
 	    startButton(event);
-	    final_span.innerHTML="onend";
+	    //final_span.innerHTML="onend";
 	    return;
 	  };
 

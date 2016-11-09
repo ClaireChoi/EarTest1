@@ -257,7 +257,7 @@
 			
 			setInterval(function() {
 				if (timeId=='') {
-					timeId = setInterval(recog, 250);
+					timeId = setInterval(recog, 150);
 				} 
 			}, 250);
 			
