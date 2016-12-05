@@ -165,7 +165,8 @@
 						}
 						array.splice(i+1,1);
 					}
-				}			
+				}
+				
 				//그외의 종성들과 초성이 3개로 겹칠 때 
 			var len = array.length;
 			if(len>2){
@@ -179,9 +180,14 @@
 					}			
 				}
 				
-				//마지막이 이중자음일 때 
+				/* for(var i = 0;i<array.length ; i++){
+					alert(array[i].letter + "/" + array[i].division + "/" + array[i].indicator);
+				}  */
+				
+				var len = array.length;					
 				var a = array[len-2];
 				var b = array[len-1];
+								
 				if(a.division==b.division){
 					doubIndex(a,b,len-1);
 				}

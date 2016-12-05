@@ -6,7 +6,7 @@
 --------------------------------------------------------
 
   CREATE TABLE "HR"."ALPHABET" 
-   (	"LETTER" VARCHAR2(4 BYTE), 
+   (	"LETTER" VARCHAR2(4 BYTE) primary key,
 	"THUMB_X" NUMBER(6,2), 
 	"THUMB_Y" NUMBER(6,2), 
 	"THUMB_Z" NUMBER(6,2), 
